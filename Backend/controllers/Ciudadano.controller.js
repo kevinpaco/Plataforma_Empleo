@@ -4,7 +4,21 @@ const ciudadanoCtrl={};
 
 ciudadanoCtrl.getCiudadanos= async (req,res)=>{
     var ciudadanos = await Ciudadano.find().populate('cursos');
+    //console.log('yee: '+ciudadanos.nombre);
     res.json(ciudadanos);
+}
+
+ciudadanoCtrl.getCiudadano= async(req,res)=>{
+    console.log('see esta bien '+req.params.id);
+     try {
+        const ciudadano = await Ciudadano.find({_id:req.params.id}).populate("cursos");
+        console.log('ciu '+ciudadano.nombre);
+        res.json(ciudadano);  
+     } catch (error) {
+         res.json({
+            'msg':"error: "+error
+         })
+     }
 }
 
 ciudadanoCtrl.crearCiudadano= async(req,res)=>{
@@ -24,12 +38,6 @@ ciudadanoCtrl.crearCiudadano= async(req,res)=>{
     }
 }
 
-ciudadanoCtrl.getCiudadano= async(req,res)=>{
-     console.log('see esta bien');
-           const ciudadano = await Ciudadano.findById(req.params.id).populate("cursos");
-           res.json(ciudadano);
-}
-
 ciudadanoCtrl.modificarCiudadano=async (req,res)=>{
       const ciudadano =new Ciudadano(req.body);
       try { 
@@ -44,6 +52,18 @@ ciudadanoCtrl.modificarCiudadano=async (req,res)=>{
             'msg':'Error al modificar Ciudadano '+error
           })
       }
+}
+
+ciudadanoCtrl.buscarPorProvincia= async (req,res)=>{
+    try {
+          var ciudadanos = await Ciudadano.find({provincia: req.body.provincia});
+          res.json(ciudadanos);
+    } catch (error) {
+        res.status(400).json({
+            'estado':'0',
+            'msg':'Error inesperado: '+ error
+        })
+    }
 }
 
 ciudadanoCtrl.eliminarCiudadano=async(req,res)=>{

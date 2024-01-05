@@ -22,4 +22,47 @@ empleadorCtrl.createEmpleador=async (req,res)=>{
     }
 }
 
+empleadorCtrl.getEmpleador= async(req,res)=>{
+      try {
+        const empleador = await Empleador.findById(req.params.id);
+        res.json(empleador);        
+      } catch (error) {
+        res.status(400).json({
+          'estado':'0',
+          'msg':'Erro inesperado: '+error
+        })
+      }
+ }
+
+ empleadorCtrl.modificarEmpleador=async(req,res)=>{
+       try {
+            const empleador= new Empleador(req.body);
+            await Empleador.updateOne({_id:req.body._id},empleador);            
+            res.json({
+              'estado':'1',
+              'msg':'Empleador modificado exitosamente'
+            }); 
+       } catch (error) {
+             res.status(400).json({
+              'estado':'0',
+              'msg':'Error al modificar empleado'
+             })
+       }
+ }
+
+ empleadorCtrl.eliminarEmpleador=async(req,res)=>{
+      try {
+            await Empleador.deleteOne({_id:req.params.id});
+            res.json({
+              'estado':'1',
+              'msg':'Empleador Eliminado exitosamente'
+            });
+      } catch (error) {
+        res.status(400).json({
+          'estado':'0',
+          'msg':'Error al eliminar: '+error
+        }) 
+      }
+ }
+
 module.exports = empleadorCtrl;

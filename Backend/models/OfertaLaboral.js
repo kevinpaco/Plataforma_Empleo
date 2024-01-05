@@ -9,6 +9,8 @@ const OfertaLaboralSchema= new Schema({
     disponibilidadHoraria:{type:String, required:true},
     principalesTareas:{type:String, required:true},
     datosContacto:{type:String, required:true},
+    provincia:{type:String, required:true},
+    fechaPublicacion:{type: Date, required:true},
     jornada:{type:String, required:true},
     requisitos:{type:String, required:true},
     salario:{type:String, required:true},

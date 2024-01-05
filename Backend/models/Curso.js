@@ -4,6 +4,7 @@ const {Schema}= mongoose;
 const CursoSchema= new Schema({
     nombreCurso:{type: String, required:true},
     descripcion:{type: String, required:true},
+    categoria:{type: String, required:true},
     fechaInicio:{type: String, required:true},
     fechaFin:{type: String, required:true},
     logo:{type: String, required:false},

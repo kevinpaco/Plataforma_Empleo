@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/',ciudadanoCtrl.getCiudadanos);
 router.post('/', ciudadanoCtrl.crearCiudadano);
 router.put('/actualizar', ciudadanoCtrl.modificarCiudadano);
-router.get('/:id',ciudadanoCtrl.getCiudadano);
+router.get('/buscar/:id',ciudadanoCtrl.getCiudadano);
 router.delete('/eliminar/:id',ciudadanoCtrl.eliminarCiudadano);
-
+router.post('/filtrar/',ciudadanoCtrl.buscarPorProvincia);
 module.exports= router;
