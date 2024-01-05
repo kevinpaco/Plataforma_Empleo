@@ -2,7 +2,7 @@ const ciudadanoCtrl = require('../controllers/Ciudadano.controller');
 
 const express = require('express');
 
-const router = express.Router();
+const router = express.Router(); 
 
 //rutas para la gestion de ciudadanos
 
