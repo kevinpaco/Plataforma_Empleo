@@ -1,0 +1,64 @@
+<div class="row todo">
+    <section class="col-lg-8 col-md-6 imagen">
+          <div class="cajafuera1">
+               <img class="fondo offset-2" src="../../../assets/login-fondo/fondo.jpg">
+          </div> 
+    </section>
+    <aside class="col-lg-4 col-md-6 col-12">
+           <div class="row">
+                <div class="offset-md-1 col-3 offset-2">
+                    <img class="image" src="../../../assets/login-fondo/secretaria.png"/>
+                </div>
+                <div class="col-3 offset-1">
+                    <img class="image" src="../../../assets/login-fondo/secretario.png"/>
+                </div>
+           </div>
+           <form class="form offset-2" method="post" action="" name="vaidrollteam">           
+            <!-- <label class="form-label" for="email"><i class="bi bi-envelope-at"></i></label>-->
+            <input type="email" id="email" name="txtusuario" placeholder="Ingresar Email"
+              class="cajaentradatexto"  />
+            <div>
+            <!--  <label class="form-label"><i class="bi bi-key"></i></label>-->
+               <input type="password" name="txtpassword" placeholder="Ingresar password"
+                class="cajaentradatexto" />
+            </div>
+            <input type="submit" value="Iniciar sesión" class="botonenviar" />
+            <div class="ref1">
+              <a [routerLink]="['/ciudadano-form/0']" routerLinkActive="active" >Registrar</a> / <a href="#">Recuperar contraseña</a>
+            </div>
+          </form>
+    </aside>
+</div>
+
+<!--<div class="cuerpo">
+<div class="cajafuera">
+  <div class="cajafuera1" align="center"></div>
+  <div class="cajafuera2" align="center">
+    <div class="formulariocaja">
+      <form method="post" action="" name="vaidrollteam">
+        <img src="../../../assets/login-fondo/secretaria.png" />
+        <img src="../../../assets/login-fondo/secretario.png" />
+
+        <input
+          type="text"
+          name="txtusuario"
+          placeholder="&#128100; Ingresar usuario"
+          class="cajaentradatexto"
+        />
+
+        <input
+          type="password"
+          name="txtpassword"
+          placeholder="&#128274; Ingresar password"
+          class="cajaentradatexto"
+        />
+        <input type="submit" value="Iniciar sesión" class="botonenviar" />
+        <div class="ref1">
+          <a href="#">Registrar</a> / <a href="#">Recuperar contraseña</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>-->
+
