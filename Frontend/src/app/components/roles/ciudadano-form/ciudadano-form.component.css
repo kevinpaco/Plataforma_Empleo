@@ -1,0 +1,38 @@
+
+.container{
+    background-image: url('../../../../assets/formularios/buscar-empleo.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+/*
+   formulario carga de ciudadano
+*/
+.form{
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px dashed   black;
+    padding: 4px;
+    background-color: rgb(197, 201, 232);
+    box-shadow: 10px 6px 10px 0px rgba(41, 40, 53, 0.8);
+}
+
+.form:hover{
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px dashed   black;
+    padding: 4px;
+    background-color: rgb(197, 201, 232);
+    box-shadow: 14px 6px 10px 0px rgba(32, 12, 158, 0.8);
+    transform: translateY(-10px) translateX(-10px);
+    transition: transform 0.5s ease-in-out;
+}
+
+.form .title{
+    background-color: rgb(53, 23, 221);
+    text-align: center;
+}

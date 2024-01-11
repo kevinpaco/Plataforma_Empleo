@@ -2,6 +2,7 @@ import { Login } from "./login";
 import { OfertaLaboral } from "./oferta-laboral";
 
 export class Empleador extends Login{
+    _id!:string;
     cuit!: string;
     rezonSocial!: string;
     nombreComercial!: string;

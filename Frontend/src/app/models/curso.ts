@@ -1,3 +1,5 @@
+import { Ciudadano } from "./ciudadano.model";
+
 export class Curso {
     _id!:string
     nombreCurso!:string;
@@ -7,7 +9,7 @@ export class Curso {
     fechaFin!:string;
     logo!:string;
     vacantes!:Number;
-    ciudadanos!:Array<Curso>;
+    ciudadanos!:Array<Ciudadano>;
 
     constructor(){
         this.nombreCurso='';
@@ -17,6 +19,6 @@ export class Curso {
         this.fechaFin='';
         this.logo='';
         this.vacantes= 0;
-        this.ciudadanos=new Array<Curso>();
+        this.ciudadanos=new Array<Ciudadano>();
     }
 }

@@ -1,4 +1,4 @@
-import { Ciudadano } from "./ciudadano";
+import { Ciudadano} from "./ciudadano.model";
 import { Login } from "./login";
 
 export class Curriculum extends Login{
@@ -72,6 +72,6 @@ export class Curriculum extends Login{
      this.perfilLaboral='';
      this.sobreMi='';
      this.conociemientosInformaticos='';
-     this.ciudadano=new Ciudadano();
+     
      }
 }

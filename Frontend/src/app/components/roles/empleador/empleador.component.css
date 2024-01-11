@@ -1,0 +1,90 @@
+.empleador-principal{
+    background-color: rgb(217, 230, 246);
+}
+/*
+  Seccion de busqueda de ciudadanos
+*/
+.list-ciudadanos{
+
+}
+
+/*
+   hace un hober a la barra del scroll
+*/
+.list-ciudadanos:hover{   
+    .ciudadanos::-webkit-scrollbar-thumb {
+        background-color: #76a0e8;  /* Color del thumb (barra de arrastre) */
+        border-radius: 10px;
+    
+    }
+}
+
+
+/*
+  formulario filtrar
+*/
+.filtrar{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/*
+  Todas los ciudadanos y el scroll
+*/
+.ciudadanos{
+    overflow:scroll;
+    height: 480px;
+    padding-top: 15px;
+}
+
+/*
+   barra del scroll
+*/
+.ciudadanos::-webkit-scrollbar {
+    background-color: rgb(217, 230, 246);  /* Color de fondo de la barra */
+
+}
+
+.ciudadanos::-webkit-scrollbar-thumb {
+    background-color: rgb(217, 230, 246);  /* Color del thumb (barra de arrastre) */
+    border-radius: 10px;
+    
+}
+
+/*
+  Tajeta
+*/
+.tarjetas{
+    margin-top: 4px;
+}
+
+.tarjetas:hover{
+    margin-top: 4px;
+    border: 1px solid gray;
+    box-shadow: 7px 6px 7px 0px rgba(41, 40, 53, 0.8);
+    transform: translateY(-6px );
+}
+
+/*
+  seccion de ofertas del empleador
+*/
+.list-mis-ofertas{
+    
+}
+
+/*
+   hace un hober a la barra del scroll
+*/
+.list-mis-ofertas:hover{
+    .ciudadanos::-webkit-scrollbar-thumb {
+        background-color: #76a0e8;  /* Color del thumb (barra de arrastre) */
+        border-radius: 10px;
+    
+    }
+}
+
+.title-ofertas{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

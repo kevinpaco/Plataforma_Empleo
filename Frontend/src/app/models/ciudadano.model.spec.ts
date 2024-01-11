@@ -1,6 +1,6 @@
-import { Ciudadano } from './ciudadano';
+import { Ciudadano } from './ciudadano.model';
 
-describe('Ciudadano', () => {
+describe('CiudadanoModel', () => {
   it('should create an instance', () => {
     expect(new Ciudadano()).toBeTruthy();
   });

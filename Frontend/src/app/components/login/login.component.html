@@ -4,7 +4,9 @@
                <img class="fondo offset-2" src="../../../assets/login-fondo/fondo.jpg">
           </div> 
     </section>
+    <!--Seccion de registro-->
     <aside class="col-lg-4 col-md-6 col-12">
+         <!--Iconos superiores al login-->
            <div class="row">
                 <div class="offset-md-1 col-3 offset-2">
                     <img class="image" src="../../../assets/login-fondo/secretaria.png"/>
@@ -13,6 +15,7 @@
                     <img class="image" src="../../../assets/login-fondo/secretario.png"/>
                 </div>
            </div>
+           <!--Formulario del login-->
            <form class="form offset-2" method="post" action="" name="vaidrollteam">           
             <!-- <label class="form-label" for="email"><i class="bi bi-envelope-at"></i></label>-->
             <input type="email" id="email" name="txtusuario" placeholder="Ingresar Email"
@@ -24,41 +27,49 @@
             </div>
             <input type="submit" value="Iniciar sesión" class="botonenviar" />
             <div class="ref1">
-              <a [routerLink]="['/ciudadano-form/0']" routerLinkActive="active" >Registrar</a> / <a href="#">Recuperar contraseña</a>
+              <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Registrar</a> / <a href="#">Recuperar contraseña</a>
             </div>
           </form>
     </aside>
 </div>
 
-<!--<div class="cuerpo">
-<div class="cajafuera">
-  <div class="cajafuera1" align="center"></div>
-  <div class="cajafuera2" align="center">
-    <div class="formulariocaja">
-      <form method="post" action="" name="vaidrollteam">
-        <img src="../../../assets/login-fondo/secretaria.png" />
-        <img src="../../../assets/login-fondo/secretario.png" />
+<!-- Modal seleccion usuario -->
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="modalSeleccionUsuario" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <!-- Header modal -->
+          <div class="modal-header bg-orange">
+              <h5 class="modal-title" id="modalSeleccionUsuario">Registrarse Como</h5>
 
-        <input
-          type="text"
-          name="txtusuario"
-          placeholder="&#128100; Ingresar usuario"
-          class="cajaentradatexto"
-        />
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
 
-        <input
-          type="password"
-          name="txtpassword"
-          placeholder="&#128274; Ingresar password"
-          class="cajaentradatexto"
-        />
-        <input type="submit" value="Iniciar sesión" class="botonenviar" />
-        <div class="ref1">
-          <a href="#">Registrar</a> / <a href="#">Recuperar contraseña</a>
-        </div>
-      </form>
-    </div>
+          <!-- Body modal -->
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col px-2">
+                      <a aria-current="ciudadanoForm" [routerLink]="['/ciudadano-form/0']" routerLinkActive="active"
+                          data-bs-dismiss="modal">
+                          <img src="../../../assets/login-fondo/modal/empleado.png" alt="Login | Ciudadano"
+                              class="img-fluid registration-option" />
+                      </a>
+                  </div>
+
+                  <div class="col px-2">
+                      <a aria-current="gestorForm" [routerLink]="['/empleador-form/0']" routerLinkActive="active"
+                          data-bs-dismiss="modal">
+                          <img src="../../../assets/login-fondo/modal/empleador-icono.png" alt="Login | Emlpeador"
+                              class="img-fluid registration-option" />
+                      </a>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Footer modal -->
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+      </div>
   </div>
 </div>
-</div>-->
 

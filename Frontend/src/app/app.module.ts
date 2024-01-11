@@ -11,6 +11,10 @@ import { CiudadanoComponent } from './components/roles/ciudadano/ciudadano.compo
 import { CiudadanoFormComponent } from './components/roles/ciudadano-form/ciudadano-form.component';
 import { EmpleadorComponent } from './components/roles/empleador/empleador.component';
 import { EmpleadorFormComponent } from './components/roles/empleador-form/empleador-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormOfertasLaboralesComponent } from './components/form-ofertas-laborales/form-ofertas-laborales.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +26,16 @@ import { EmpleadorFormComponent } from './components/roles/empleador-form/emplea
     CiudadanoComponent,
     CiudadanoFormComponent,
     EmpleadorComponent,
-    EmpleadorFormComponent
+    EmpleadorFormComponent,
+    FormOfertasLaboralesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -135,6 +135,35 @@ footer
 	font-size:1em;
 	font-weight: bold;
 }
+
+/*
+  MODAL
+*/
+.bg-orange {
+	background-color: #2e47e7;
+	color: white;
+  }
+  
+  .registration-option {
+	border: 1px solid;
+	border-color: gray;
+	padding: 8px;
+	border-radius: 8px;
+	transition-duration: 0.3s;
+  }
+  
+  .registration-option:hover {
+	background-color: #2e47e7;
+  }
+  
+  .registration-option:active {
+	background-color: #2e47e7;
+  }
+  
+  .modal-footer .btn-secondary {
+	width: 100%;
+  }
+
 @media screen and (max-width: 1280px) 
 {
 .cajafuera
@@ -218,3 +247,4 @@ footer
 }
   
 }
+

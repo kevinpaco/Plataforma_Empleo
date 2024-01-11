@@ -1,0 +1,124 @@
+.ofertasLaborales{
+    background-color: rgb(217, 230, 246);
+}
+/*
+  formulario filtrar
+*/
+.filtrar{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.seccionOfertas{
+    
+}
+
+/*
+  Todas las ofertas y el scroll
+*/
+.ofertas{
+    overflow:scroll;
+    height: 500px;
+    padding-top: 15px;
+}
+
+.ofertas::-webkit-scrollbar {
+    background-color: rgb(217, 230, 246);;  /* Color de fondo de la barra */
+
+}
+
+.ofertas::-webkit-scrollbar-thumb {
+    background-color: #4239f0;  /* Color del thumb (barra de arrastre) */
+    border-radius: 10px;
+
+}
+
+/*
+  Tajeta
+*/
+.tarjetas{
+    margin-top: 4px;
+}
+
+.tarjetas:hover{
+    margin-top: 4px;
+    border: 1px solid gray;
+    box-shadow: 7px 6px 7px 0px rgba(41, 40, 53, 0.8);
+    transform: translateY(-6px );
+}
+
+.descripcionOferta{
+    overflow:scroll;
+    height: 500px;
+}
+
+.descripcionOferta::-webkit-scrollbar {
+    background-color: rgb(217, 230, 246);;  /* Color de fondo de la barra */
+
+}
+
+.descripcionOferta::-webkit-scrollbar-thumb {
+    background-color: #4239f0;  /* Color del thumb (barra de arrastre) */
+    border-radius: 10px;
+
+}
+
+/*
+   frase
+*/
+.frase{
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: #826f04;
+}
+
+/*
+  contenedor de boton de postularse
+*/
+.btnpostular {
+    display: flex;  /* Convierte el div en un contenedor flex */
+    justify-content: center;  /* Centra el contenido horizontalmente */
+    align-items: center;  /* Centra el contenido verticalmente */
+    height: 100px;  /* Ejemplo de altura para que se vea el centrado vertical */
+  }
+
+/*
+ boton de pustularse
+*/
+  .btn-success{
+    height: 55px;
+    width: 150px;
+    border-radius: 30px;
+    background-color: #4239f0;
+  }
+
+  .btn-success:hover{
+    height: 55px;
+    width: 150px;
+    border-radius: 30px;
+    transform: translateY(-5px);
+    box-shadow: 5px 6px 5px 0px rgba(20, 15, 71, 0.8);
+  }
+
+/*
+  descripcion del puesto 
+*/
+  .title-puesto{
+      font-family:'Times New Roman', Times, serif;
+      font-weight: bold;
+  }
+
+  /*
+  
+  */
+  .subtitle-empleador{
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: rgb(72, 62, 62);
+  }
+
+  .dias{
+    font-size: medium;
+    color: gray;
+  }

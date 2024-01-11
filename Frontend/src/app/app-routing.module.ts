@@ -6,6 +6,7 @@ import { EmpleadorComponent } from './components/roles/empleador/empleador.compo
 import { EmpleadorFormComponent } from './components/roles/empleador-form/empleador-form.component';
 import { CiudadanoComponent } from './components/roles/ciudadano/ciudadano.component';
 import { CiudadanoFormComponent } from './components/roles/ciudadano-form/ciudadano-form.component';
+import { FormOfertasLaboralesComponent } from './components/form-ofertas-laborales/form-ofertas-laborales.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -13,8 +14,9 @@ const routes: Routes = [
   //empleador
   {path:'empleador',component:EmpleadorComponent},
   {path:'empleador-form/:id',component:EmpleadorFormComponent},
+  {path:'empleador/generar/oferta', component: FormOfertasLaboralesComponent},
   //ciudadanos
-  {path:'ciudadano',component:CiudadanoComponent},
+  {path:'ciudadano/principal',component:CiudadanoComponent},
   {path:'ciudadano-form/:id',component:CiudadanoFormComponent},
 
 ];

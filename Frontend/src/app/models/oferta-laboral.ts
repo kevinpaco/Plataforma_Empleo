@@ -1,4 +1,4 @@
-import { Ciudadano } from "./ciudadano";
+import { Ciudadano } from "./ciudadano.model";
 import { Empleador } from "./empleador";
 
 export class OfertaLaboral {

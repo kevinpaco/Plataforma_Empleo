@@ -1,1 +1,55 @@
-<p>ciudadano works!</p>
+<div class="row ofertasLaborales">
+     <div class="filtrar col-md-6 offset-md-3">
+        <div class="row">
+            <div class="col">
+              <input type="Date" class="form-control" placeholder="Ingrese Fecha" aria-label="fecha">
+            </div>
+            <div class="col">
+              <select class="form-select" aria-label="Default select example">
+                 <option selected >Provincia</option>
+                  <option *ngFor="let provincia of provincias.provincias" value="{{provincia.nombre}}">{{provincia.nombre}}</option>
+              </select>
+            </div>
+            <div class="col">
+                <button class="btn btn-info">Filtrar</button>
+              </div>
+          </div>
+     </div>
+     <section class="seccionOfertas col-md-5">
+      <div class="ofertas offset-1" >
+        <div class="card tarjetas" style="width: 29rem;" *ngFor="let oferta of ofertasLaborales,let i = index">
+          <div class="card-body">
+            <h5 class="card-title">{{oferta.puestoRequerido}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{oferta.fechaPublicacion}}</h6>
+            <p class="card-text">{{oferta.principalesTareas}}</p>
+            <button class="btn btn-info" (click)="verOferta(i)">Ver Oferta</button>
+          </div>
+        </div>
+      </div>
+     </section>
+     <aside class="descripcionOferta col-md-7 d-md-block d-none">
+       <div class="row frase" *ngIf="mostrarOferta==false">
+           <h1 class="col">"Siempre hay una oportunidad para marcar la diferencia."</h1>
+       </div>
+       <div class="row " *ngIf="mostrarOferta==true">
+            <h1 class="title-puesto">{{oferta.puestoRequerido}}</h1>
+            <h5 class="subtitle-empleador">{{empleador.nombreComercial}}</h5>
+            <h6 class="subtitle-empleador">{{oferta.provincia}}</h6>
+            <hr>
+            <h4>Descripcion de la oferta:</h4>
+            <p class="tareas">{{oferta.principalesTareas}}</p>
+            <h4>Requerimientos</h4>
+            <p class="requisitos">{{oferta.requisitos}}</p>
+            <p><span>Jornada Laboral: </span>{{oferta.jornada}}</p>
+            <h4>Beneficios: </h4>
+            <p>{{oferta.beneficio}}</p>
+            <p>Salario: {{oferta.salario}}</p>
+
+            <p><b>Cantidad de vacantes:</b> {{oferta.cantidadVacantes}}</p>
+            <p class="dias">Hace {{diasPasdados}} días</p>
+            <div class="btnpostular">
+            <button class="btn btn-success">Postularme</button>
+            </div>
+       </div>
+    </aside>
+</div>

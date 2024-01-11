@@ -3,10 +3,10 @@ import { Curso } from "./curso";
 import { Login } from "./login";
 import { OfertaLaboral } from "./oferta-laboral";
 
-export class Ciudadano extends Login {
+export class Ciudadano extends Login{
     _id!:String;
     dni!:Number;
-    nombre!:string;
+    nombre:string;
     provincia!:string;
     estadoCivil!:string;
     telefono!: Number;
