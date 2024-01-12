@@ -1,1 +1,58 @@
-<p>form-ofertas-laborales works!</p>
+<div class="row generar-oferta">
+    <div class="container col-7">
+    <form class="row g-3 form-oferta">
+        <h2 class="title">Oferta Laboral</h2>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">Puesto Requerido: </label>
+          <input type="text" class="form-control" id="validationCustom01" placeholder="Ingrese el puesto requerido">
+        </div>
+        <div class="col-md-3">
+            <label for="validationCustom04" class="form-label">Provincia: </label>
+            <select class="form-select" id="validationCustom04" >
+              <option selected disabled value="">opciones</option>
+              <option>...</option>
+            </select>
+          </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">Telefono: </label>
+          <input type="number" class="form-control" id="validationCustom02" placeholder="Ingrese telefono" >
+        </div>
+        <div class="col-md-3">
+          <label for="cantVacantes" class="form-label">Cantidad de Vacantes: </label>
+            <input type="number" class="form-control" id="cantVacantes" placeholder="Ingrese vantidad de Vacantes" >
+        </div>
+        <div class="col-md-8">
+          <label for="descripcion" class="form-label">Descripcion de puesto: </label>
+          <textarea class="form-control" id="descripcion" placeholder="Ingrese descripcion"> </textarea>
+        </div>     
+        <div class="col-md-3">
+          <label for="jornada" class="form-label">Jornada laboral: </label>
+          <input type="text" class="form-control" id="jornada" placeholder="Ingrese Jornada laboral">
+        </div>
+        <div class="col-md-8">
+            <label for="tarea" class="form-label">Tareas Principales: </label>
+            <textarea class="form-control" id="tarea" placeholder="Ingrese tareas principales"> </textarea>
+          </div> 
+          <div class="col-md-3">
+            <label for="disponibilidad" class="form-label">Disponibilidad: </label>
+            <input type="text" class="form-control" id="disponibilidad" placeholder="Ingrese Jornada laboral">
+          </div>
+          <div class="col-md-8">
+              <label for="salario" class="form-label">Salario: </label>
+              <textarea class="form-control" id="salario" placeholder="Ingrese requisitos del puesto"> </textarea>
+            </div> 
+            <div class="col-md-3">
+                <label for="beneficio" class="form-label">Beneficios: </label>
+                <input type="text" class="form-control" id="bieneficio" placeholder="Ingrese Jornada laboral">
+              </div>
+              <div class="col-md-8">
+                  <label for="requisitos" class="form-label">Requisitos: </label>
+                  <textarea class="form-control" id="requisitos" placeholder="Ingrese requisitos del puesto"> </textarea>
+                </div> 
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Publicar</button>
+          <button class="btn btn-danger" [routerLink]="['/empleador/principal']" type="submit">Cancelar</button>
+        </div>
+      </form>
+    </div>
+</div>

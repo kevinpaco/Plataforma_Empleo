@@ -66,6 +66,36 @@
 }
 
 /*
+   Modal ciudadanos
+*/
+.modal-dialog .modal-content{
+    background-color: rgb(176, 193, 214);
+}
+
+/*
+   datos del ciudadanos
+*/
+/**
+    TITULO CAMPOS
+  */
+.titulo {
+    background-color:  rgb(176, 193, 214);
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.titulo span{
+    background-color:  rgb(176, 193, 214);
+    font-weight: normal;
+}
+
+.titulo .descripcion{
+    background-color:  rgb(176, 193, 214);
+    font-weight: normal;
+    float: left;
+}
+
+/*
   seccion de ofertas del empleador
 */
 .list-mis-ofertas{

@@ -19,7 +19,7 @@
             <h5 class="card-title">{{ciudadano.nombre}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ciudadano.curriculum.tituloTerciario}}</h6>
             <p class="card-text">{{ciudadano.curriculum.perfilLaboral}}</p>
-            <button class="btn btn-info" >Mas Información</button>
+            <button class="btn btn-info" (click)="cargarModalCiudadano(i)" data-bs-toggle="modal" data-bs-target="#modalInfo">Mas Información</button>
           </div>
         </div>
       </div>
@@ -34,9 +34,96 @@
                 <h5 class="card-title">{{oferta.puestoRequerido}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{oferta.fechaPublicacion}}</h6>
                 <p class="card-text">{{oferta.principalesTareas}}</p>
-                <button class="btn btn-info">modificar Oferta</button>
+                <button class="btn btn-info" (click)="cargarModalOferta(i)" data-bs-toggle="modal" data-bs-target="#modalInfo">Ver Oferta</button>
               </div>
             </div>
           </div>
-    </aside>
+        </aside>
+    <!-- Modal -->
+    <div class="modal fade" id="modalInfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{tituloModal}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <!--Cuerpo del Modal-->
+          <div class="modal-body">        
+            <!-- Datos Ciudadano-->
+            <div class="text-center background-datos" *ngIf="activarModalCiudadano">
+              <div class="row">
+                 <!--Datos personales-->
+                  <div class="col-12 col-md-3">
+                      <div class="titulo">Nombre: 
+                        <span class="mb-4 py-1">{{ciudadano.nombre}}</span> 
+                      </div>                      
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <div class="titulo">Apellido: 
+                      <span class="mb-4 py-1">{{ciudadano.curriculum.apellido}}</span> 
+                    </div>                      
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="titulo">Email: 
+                      <span class="mb-4 py-1">{{ciudadano.email}}</span> 
+                    </div>                      
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <div class="titulo">Telefono: 
+                      <span class="mb-4 py-1">{{ciudadano.telefono}}</span> 
+                    </div>                      
+                 </div>
+                 <div class="col-12 col-md-3">
+                  <div class="titulo">Provincia: 
+                    <span class="mb-4 py-1">{{ciudadano.provincia}}</span> 
+                  </div>                      
+               </div>
+               <div class="col-12 col-md-3">
+                <div class="titulo">Direccion: 
+                  <span class="mb-4 py-1 ">{{ciudadano.curriculum.direccion}}</span> 
+                </div>                      
+             </div>
+               <!--Perfil-->
+                  <div class="col-12 col-md-6">
+                     <div class="titulo">Titulo Universitario/terciario: 
+                      <span class="mb-4 py-1">{{ciudadano.curriculum.tituloTerciario}}</span> 
+                     </div>                      
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="titulo">Sebre el:
+                     <span class="mb-4 py-1 descripcion">{{ciudadano.curriculum.sobreMi}}</span> 
+                    </div>                      
+                 </div>
+                 <div class="col-12 col-md-6">
+                  <div class="titulo">Perfil Laboral:
+                   <span class="mb-4 py-1 descripcion">{{ciudadano.curriculum.perfilLaboral}}</span> 
+                  </div>                      
+               </div>
+               <div class="col-12 col-md-6">
+                <div class="titulo">Conosimientos Informaticos:
+                 <span class="mb-4 py-1 descripcion">{{ciudadano.curriculum.conociemientosInformaticos}}</span> 
+                </div>                      
+             </div>
+             </div>
+            </div>
+            <!-- Datos Oferta-->
+            <div class="text-center background-datos" *ngIf="activarModalEmpleador == true">
+              <div class="row">
+                  <div class="col-12 col-md-4">
+                      <div class="titulo">Puesto requerido</div>
+                      <div class="mb-4 bg-white py-1">{{oferta.puestoRequerido}}</div>
+                  </div>
+               </div>
+            </div>
+            <!--footer del modal-->
+            <div class="modal-footer">
+             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+              <button type="button" class="btn btn-primary">Descargar CV</button>
+            </div>
+
+          </div>
+        </div>
+    
+        </div>
+      </div>
 </div>

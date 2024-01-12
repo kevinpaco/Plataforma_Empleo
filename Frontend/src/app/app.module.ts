@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormOfertasLaboralesComponent } from './components/form-ofertas-laborales/form-ofertas-laborales.component';
+import { FormCurriculumComponent } from './components/form-curriculum/form-curriculum.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormOfertasLaboralesComponent } from './components/form-ofertas-laboral
     CiudadanoFormComponent,
     EmpleadorComponent,
     EmpleadorFormComponent,
-    FormOfertasLaboralesComponent
+    FormOfertasLaboralesComponent,
+    FormCurriculumComponent
   ],
   imports: [
     BrowserModule,

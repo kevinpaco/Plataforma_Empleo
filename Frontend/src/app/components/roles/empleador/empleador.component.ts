@@ -1,7 +1,6 @@
-import { Component, OnInit, isDevMode } from '@angular/core';
+import { Component, OnInit, ElementRef,ViewChild } from '@angular/core';
 import { Ciudadano } from 'src/app/models/ciudadano.model';
 import { Curriculum } from 'src/app/models/curriculum';
-import { Empleador } from 'src/app/models/empleador';
 import { OfertaLaboral } from 'src/app/models/oferta-laboral';
 import { Provincias } from 'src/app/utils/util';
 
@@ -11,27 +10,53 @@ import { Provincias } from 'src/app/utils/util';
   styleUrls: ['./empleador.component.css']
 })
 export class EmpleadorComponent implements OnInit{
+   
+   activarModalCiudadano:boolean;
+   activarModalEmpleador:boolean;
+   tituloModal:string;
     provincias:Provincias;
     ciudadanos:Array<Ciudadano>;
     ciudadano:Ciudadano;
     ofertas:Array<OfertaLaboral>;
+    oferta:OfertaLaboral;
+ 
     constructor(){
       this.provincias=new Provincias();
       this.ciudadano=new Ciudadano();
       this.ciudadanos=new Array<Ciudadano>();
       this.ofertas=new Array<OfertaLaboral>();
+      this.oferta=new OfertaLaboral();
     }
 
     ngOnInit(): void {
           this.cargarCiudadanos();
           this.cargarOfertas();
+          this.activarModalEmpleador=false;
+          this.activarModalCiudadano=false;
+    }
+
+    cargarModalCiudadano(indice:any){
+        this.tituloModal="Informacion de Ciudadano";  
+        this.activarModalCiudadano=true;
+        this.activarModalEmpleador=false;
+        this.ciudadano=this.ciudadanos[indice];      
+    }
+    cargarModalOferta(indice:any){
+      this.tituloModal="Informacion de mi oferta";
+      this.activarModalCiudadano=false;
+        this.activarModalEmpleador=true;
+        this.oferta= this.ofertas[indice];
     }
 
     cargarCiudadanos(){
       let curriculum = new Curriculum();
-      curriculum.perfilLaboral="Una persona con ganas de lburar";
+      curriculum.apellido="Topo";
+      curriculum.sobreMi="Una persona con ganas de laburar en una buena empresa"
+      curriculum.perfilLaboral="Me destaco en el trabajo en equipo, siempres trato de resolver los problemas q se me presentan";
       curriculum.tituloTerciario="Ingeniero informatico";
       curriculum.direccion="San salvador de jujuy";
+      curriculum.conociemientosInformaticos="leguajes de progrmaacion como java phyton y lebrerias como angular"
+
 
       let ciu1 = new Ciudadano();
       ciu1.nombre="Juan";
@@ -42,7 +67,7 @@ export class EmpleadorComponent implements OnInit{
       ciu1.curriculum=curriculum;
 
       let ciu2 = new Ciudadano();
-      ciu2.nombre="Juan";
+      ciu2.nombre="Marcelo";
       ciu2.email="juan@gmail.com";
       ciu2.estadoCivil="soltero";
       ciu2.telefono=3882343234;

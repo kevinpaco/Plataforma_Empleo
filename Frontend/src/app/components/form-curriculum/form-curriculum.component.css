@@ -1,0 +1,28 @@
+.generar-curriculum{
+    background-color: rgb(217, 230, 246);
+}
+
+/*
+  formulario del curriculum
+*/
+.form-curriculum{
+       margin-top: 20px;
+       margin-bottom: 30px;
+       font-family: 'Courier New', Courier, monospace;
+       font-weight: bold;
+}
+ .title{
+    text-align: center;
+    font-weight: bold;
+ }
+
+/*
+   primera seccion
+*/
+.accordion-collapse{
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: rgb(137, 181, 235);
+}

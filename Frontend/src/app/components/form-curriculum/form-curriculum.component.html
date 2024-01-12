@@ -1,0 +1,247 @@
+<div class="row generar-curriculum">
+    <div class="container col-7">
+    <form class="row g-3 form-curriculum">
+        <h2 class="title">Mi Curriculum</h2>
+        <button class="btn btn-success">Guardar</button> 
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                  Datos Pesonales
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                  <div class="row"> 
+                    <div class="col-md-4">
+                        <label for="nombre" class="form-label">Nombre: </label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="apellido" class="form-label">Apellido: </label>
+                        <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" >
+                        </div>
+                        <div class="col-md-4">
+                        <label for="fechaNacimiento" class="form-label">Fecha de nacimiento: </label>
+                        <input type="date" class="form-control" id="fechaNacimiento" placeholder="Ingrese Fecha de fechaNacimiento" >
+                        </div>
+                        <div class="col-md-4">
+                        <label for="telefono" class="form-label">Telefono: </label>
+                        <input type="text" class="form-control" id="telefono" placeholder="Ingrese telefono" >
+                        </div>
+                    <div class="col-md-4">
+                        <label for="validationCustom04" class="form-label">Provincia: </label>
+                        <select class="form-select" id="validationCustom04" >
+                            <option selected disabled value="">opciones</option>
+                            <option>...</option>
+                        </select>
+                        </div>
+                    <div class="col-md-4">
+                        <label for="direccion" class="form-label">Direccion: </label>
+                        <input type="number" class="form-control" id="direccion" placeholder="Ingrese su direccion" >
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingPerfil">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsePerfil" aria-expanded="false" aria-controls="panelsStayOpen-collapsePerfil">
+                    Mi Perfil
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapsePerfil" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingPerfil">
+                  <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                            <label for="perfilLaboral" class="form-label">Mi Perfil: </label>
+                            <textarea type="text" class="form-control" id="perfilLaboral" placeholder="Ingrese su Perfil Laboral" ></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="sobreMi" class="form-label">Sobre Mi: </label>
+                            <textarea type="text" class="form-control" id="sobreMi" placeholder="Como se describe laboralmente" ></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="conociemientosInformaticos" class="form-label">Conocimientos Informaticos: </label>
+                            <textarea type="text" class="form-control" id="conociemientosInformaticos" placeholder="Ingrese sus conosimientos Informaticos" ></textarea>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                  Datos Academicos
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                   <div class="row">
+                    <div class="col-md-4">
+                        <label for="primaria" class="form-label">Primaria: </label>
+                          <input type="text" class="form-control" id="primaria" placeholder="Ingrese nombre del Instituto" >
+                      </div>
+                      <div class="col-md-4">
+                        <label for="fechaInicioPrimaria" class="form-label">fecha Inicio: </label>
+                          <input type="date" class="form-control" id="fechaInicioPrimaria" >
+                      </div>
+                      <div class="col-md-4">
+                        <label for="fechaFinPrimaria" class="form-label">Fecha Fin: </label>
+                          <input type="date" class="form-control" id="fechaFinPrimaria">
+                      </div>
+                      <h6>Secundario</h6>
+                      <div class="col-md-4">
+                        <label for="secundaria" class="form-label">Secundario: </label>
+                          <input type="text" class="form-control" id="secundaria" placeholder="Ingrese nombre de Instituto" >
+                      </div>
+                      <div class="col-md-4">
+                        <label for="fechaInicioSecundario" class="form-label">Fecha Inicio: </label>
+                          <input type="text" class="form-control" id="fechaInicioSecundario" >
+                      </div>
+                      <div class="col-md-4">
+                        <label for="fechaFinSecundario" class="form-label">Fecha Fin: </label>
+                          <input type="date" class="form-control" id="fechaFinSecundario">
+                      </div>
+                      <div class="col-12">
+                        <label for="tituloSecundario" class="form-label">Titulo: </label>
+                          <input type="text" class="form-control" id="tituloSecundario" placeholder="Ingrese titulo obtenido">
+                      </div>
+                      <h6>Universitario o Terciario</h6>
+                      <div class="col-md-4">
+                        <label for="terciario" class="form-label">Universidad/instituto: </label>
+                          <input type="text" class="form-control" id="terciario" placeholder="Ingrese nombre de Instituto" >
+                      </div>
+                      <div class="col-md-4">
+                        <label for="fechaInicioTerciario" class="form-label">Fecha Inicio: </label>
+                          <input type="date" class="form-control" id="fechaInicioTerciario" >
+                      </div>
+                      <div class="col-md-4">
+                        <label for="fechaFinTerciario" class="form-label">Fecha Fin: </label>
+                          <input type="date" class="form-control" id="fechaFinTerciario" >
+                      </div>
+                      <div class="col-12">
+                        <label for="tituloTerciario" class="form-label">Titulo: </label>
+                          <input type="text" class="form-control" id="tituloTerciario" placeholder="Ingrese titulo obetenido" >
+                      </div>
+                   </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                  Empleo Anterior
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                <div class="accordion-body">
+                   <div class="row">
+                    <div class="col-md-4">
+                        <label for="empleador" class="form-label">Nombre del empleador: </label>
+                          <input type="text" class="form-control" id="empleador" placeholder="Ingrese nombre del empleador" >
+                      </div>
+                      <div class="col-md-4">
+                        <label for="puesto" class="form-label">Puesto que ocupo: </label>
+                          <input type="text" class="form-control" id="puesto" placeholder="Ingrese nombre del empleador" >
+                      </div>
+                      <div class="col-md-4">
+                        <label for="fechaInicioLaboral" class="form-label">Fecha Inicio: </label>
+                          <input type="text" class="form-control" id="fechaInicioLaboral" placeholder="Ingrese nombre del empleador" >
+                      </div>
+                      <div class="col-md-4">
+                        <label for="fehcaFinLaboral" class="form-label">Fehca Fin: </label>
+                          <input type="text" class="form-control" id="fehcaFinLaboral" placeholder="Ingrese nombre del empleador" >
+                      </div>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </div>       
+        <!--<div class="col-md-4">
+          <label for="nombre" class="form-label">Nombre: </label>
+          <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
+        </div>
+        <div class="col-md-4">
+            <label for="apellido" class="form-label">Apellido: </label>
+            <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" >
+          </div>
+          <div class="col-md-4">
+            <label for="fechaNacimiento" class="form-label">Fecha de nacimiento: </label>
+            <input type="date" class="form-control" id="fechaNacimiento" placeholder="Ingrese Fecha de fechaNacimiento" >
+          </div>
+          <div class="col-md-4">
+            <label for="telefono" class="form-label">Telefono: </label>
+            <input type="text" class="form-control" id="telefono" placeholder="Ingrese telefono" >
+          </div>
+        <div class="col-md-4">
+            <label for="validationCustom04" class="form-label">Provincia: </label>
+            <select class="form-select" id="validationCustom04" >
+              <option selected disabled value="">opciones</option>
+              <option>...</option>
+            </select>
+          </div>
+        <div class="col-md-4">
+          <label for="direccion" class="form-label">Direccion: </label>
+            <input type="number" class="form-control" id="direccion" placeholder="Ingrese su direccion" >
+        </div>
+         Datos escolares
+        <h5 class="subtitle">Datos Academicos</h5> 
+        <div class="col-md-4">
+            <label for="direccion" class="form-label">Primaria: </label>
+              <input type="number" class="form-control" id="direccion" placeholder="Ingrese su direccion" >
+          </div>
+          <div class="col-md-4">
+            <label for="direccion" class="form-label">Inicio: </label>
+              <input type="number" class="form-control" id="direccion" placeholder="Ingrese su direccion" >
+          </div>
+          <div class="col-md-4">
+            <label for="direccion" class="form-label">Fin: </label>
+              <input type="number" class="form-control" id="direccion" placeholder="Ingrese su direccion" >
+          </div>
+          <hr>
+          <div class="col-md-4">
+            <label for="direccion" class="form-label">Secundario: </label>
+              <input type="number" class="form-control" id="direccion" placeholder="Ingrese su direccion" >
+          </div>
+          <div class="col-md-4">
+            <label for="direccion" class="form-label">Inicio: </label>
+              <input type="number" class="form-control" id="direccion" placeholder="Ingrese su direccion" >
+          </div>
+          <div class="col-md-4">
+            <label for="direccion" class="form-label">Fin: </label>
+              <input type="number" class="form-control" id="direccion" placeholder="Ingrese su direccion" >
+          </div>
+
+        <div class="col-md-8">
+          <label for="descripcion" class="form-label">Descripcion de puesto: </label>
+          <textarea class="form-control" id="descripcion" placeholder="Ingrese descripcion"> </textarea>
+        </div>     
+        <div class="col-md-3">
+          <label for="jornada" class="form-label">Jornada laboral: </label>
+          <input type="text" class="form-control" id="jornada" placeholder="Ingrese Jornada laboral">
+        </div>
+        <div class="col-md-8">
+            <label for="tarea" class="form-label">Tareas Principales: </label>
+            <textarea class="form-control" id="tarea" placeholder="Ingrese tareas principales"> </textarea>
+          </div> 
+          <div class="col-md-3">
+            <label for="disponibilidad" class="form-label">Disponibilidad: </label>
+            <input type="text" class="form-control" id="disponibilidad" placeholder="Ingrese Jornada laboral">
+          </div>
+          <div class="col-md-8">
+              <label for="salario" class="form-label">Salario: </label>
+              <textarea class="form-control" id="salario" placeholder="Ingrese requisitos del puesto"> </textarea>
+            </div> 
+            <div class="col-md-3">
+                <label for="beneficio" class="form-label">Beneficios: </label>
+                <input type="text" class="form-control" id="bieneficio" placeholder="Ingrese Jornada laboral">
+              </div>
+              <div class="col-md-8">
+                  <label for="requisitos" class="form-label">Requisitos: </label>
+                  <textarea class="form-control" id="requisitos" placeholder="Ingrese requisitos del puesto"> </textarea>
+                </div> 
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Publicar</button>
+          <button class="btn btn-danger" [routerLink]="['/empleador/principal']" type="submit">Cancelar</button>
+        </div>-->
+      </form>
+    </div>
+</div>
+
