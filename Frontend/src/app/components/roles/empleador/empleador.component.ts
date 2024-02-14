@@ -14,11 +14,11 @@ export class EmpleadorComponent implements OnInit{
    activarModalCiudadano:boolean;
    activarModalEmpleador:boolean;
    tituloModal:string;
-    provincias:Provincias;
-    ciudadanos:Array<Ciudadano>;
-    ciudadano:Ciudadano;
-    ofertas:Array<OfertaLaboral>;
-    oferta:OfertaLaboral;
+   provincias:Provincias;
+   ciudadanos:Array<Ciudadano>;
+   ciudadano:Ciudadano;
+   ofertas:Array<OfertaLaboral>;
+   oferta:OfertaLaboral;
  
     constructor(){
       this.provincias=new Provincias();
@@ -59,6 +59,7 @@ export class EmpleadorComponent implements OnInit{
 
 
       let ciu1 = new Ciudadano();
+      ciu1.provincia="Jujuy";
       ciu1.nombre="Juan";
       ciu1.email="juan@gmail.com";
       ciu1.estadoCivil="soltero";

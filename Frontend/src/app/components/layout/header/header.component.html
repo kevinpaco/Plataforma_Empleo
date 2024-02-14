@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="row navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,21 +9,37 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+          <!--Ciudadano-->
+          <li *ngIf="tipo == 'ciudadano'" class="nav-item">
+            <a class="nav-link" href="#">Empleos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+          <li *ngIf="tipo == 'ciudadano'" class="nav-item">
+            <a class="nav-link" href="#">Cursos</a>
           </li>
+          <!--Empleador-->
+          <li *ngIf="tipo == 'empleador'" class="nav-item">
+            <a class="nav-link" href="#">Ciudadanos</a>
+          </li>
+          <!--boton dorpdown-->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown link
+              <i class="bi bi-person-circle"></i> Mi Perfil
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <!--Ciudadano-->
+            <ul *ngIf="tipo=='ciudadano'" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Mis Datos</a></li>
+              <li><a class="dropdown-item" href="#">Mis Cursos</a></li>
+              <li><a class="dropdown-item" href="#">Mis Postulaciones</a></li>
+              <li><a class="dropdown-item" href="#">Mi Curriculum</a></li>
+              <li><a class="dropdown-item" href="#">Salir</a></li>
             </ul>
+            <!--Empleador-->
+            <ul *ngIf="tipo == 'empleador'" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Mis Datos</a></li>
+              
+              <li><a class="dropdown-item" href="#">Salir</a></li>
+            </ul>
+
           </li>
         </ul>
       </div>

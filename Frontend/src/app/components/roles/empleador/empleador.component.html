@@ -53,12 +53,12 @@
             <div class="text-center background-datos" *ngIf="activarModalCiudadano">
               <div class="row">
                  <!--Datos personales-->
-                  <div class="col-12 col-md-3">
+                  <div class="col-12 col-md-4">
                       <div class="titulo">Nombre: 
                         <span class="mb-4 py-1">{{ciudadano.nombre}}</span> 
                       </div>                      
                   </div>
-                  <div class="col-12 col-md-3">
+                  <div class="col-12 col-md-4">
                     <div class="titulo">Apellido: 
                       <span class="mb-4 py-1">{{ciudadano.curriculum.apellido}}</span> 
                     </div>                      
@@ -68,17 +68,17 @@
                       <span class="mb-4 py-1">{{ciudadano.email}}</span> 
                     </div>                      
                   </div>
-                  <div class="col-12 col-md-3">
+                  <div class="col-12 col-md-4">
                     <div class="titulo">Telefono: 
                       <span class="mb-4 py-1">{{ciudadano.telefono}}</span> 
                     </div>                      
                  </div>
-                 <div class="col-12 col-md-3">
+                 <div class="col-12 col-md-4">
                   <div class="titulo">Provincia: 
                     <span class="mb-4 py-1">{{ciudadano.provincia}}</span> 
                   </div>                      
                </div>
-               <div class="col-12 col-md-3">
+               <div class="col-12 col-md-4">
                 <div class="titulo">Direccion: 
                   <span class="mb-4 py-1 ">{{ciudadano.curriculum.direccion}}</span> 
                 </div>                      
@@ -109,19 +109,67 @@
             <!-- Datos Oferta-->
             <div class="text-center background-datos" *ngIf="activarModalEmpleador == true">
               <div class="row">
-                  <div class="col-12 col-md-4">
-                      <div class="titulo">Puesto requerido</div>
-                      <div class="mb-4 bg-white py-1">{{oferta.puestoRequerido}}</div>
+                <!--Campos-->  
+                <div class="col-12">
+                  <div class="titulo">Cantidad de postulantes: 
+                       <span class="mb-4 py-1 ">{{oferta.cantidadVacantes}}</span>
                   </div>
+              </div>
+                <div class="col-12 col-md-4">
+                      <div class="titulo">Puesto requerido: 
+                           <span class="mb-4 py-1 ">{{oferta.puestoRequerido}}</span>
+                      </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="titulo">Cantidad de Vacantes: 
+                         <span class="mb-4 py-1 ">{{oferta.cantidadVacantes}}</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="titulo">Fecha de Publicación: 
+                         <span class="mb-4 py-1 ">{{oferta.fechaPublicacion}}</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="titulo">Jornada: 
+                         <span class="mb-4 py-1 ">{{oferta.puestoRequerido}}</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                     <div class="titulo">Disponibilidad Horaria: 
+                        <span class="mb-4 py-1 ">{{oferta.disponibilidadHoraria}}</span>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="titulo">Salario: 
+                       <span class="mb-4 py-1">{{oferta.salario}}</span>
+                    </div>
+                 </div>
+                 <div class="col-12 col-md-4">
+                  <div class="titulo">Resumen de puesto: 
+                     <span class="mb-4 py-1 descripcion">{{oferta.resumenPuesto}}</span>
+                  </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="titulo">Requisitos: 
+                      <span class="mb-4 py-1">{{oferta.requisitos}}</span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="titulo">Beneficios: 
+                      <span class="mb-4 py-1">{{oferta.beneficio}}</span>
+                    </div>
+                  </div>  
+
                </div>
             </div>
+          </div>
             <!--footer del modal-->
             <div class="modal-footer">
-             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-              <button type="button" class="btn btn-primary">Descargar CV</button>
-            </div>
-
-          </div>
+              <button type="button" class="btn btn-primary" *ngIf="activarModalCiudadano">Descargar CV</button> 
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close" [routerLink]="['/empleador/oferta/postulantes']" *ngIf="activarModalEmpleador">Ver Postulantes</button>
+              <button type="button" class="btn btn-primary" *ngIf="activarModalEmpleador">Actualizar Oferta</button>
+            </div>        
         </div>
     
         </div>

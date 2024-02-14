@@ -1,0 +1,112 @@
+.cursos-contenedor{
+    background-color: rgb(217, 230, 246);   
+}
+
+.filtro{
+    margin-top: 20px;
+}
+
+/*
+   tarjetas
+*/
+.curso-title{
+       margin-bottom: 0;
+}
+.subtitle{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-style: italic;
+    color: #746c6c;
+    margin-bottom: 1px;
+}
+
+.descripcion{
+    margin-bottom: 1px;
+}
+
+.vacantes{
+    font-size: small;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.fechas{
+    font-weight: bold;
+    color: #6b6666;
+    float: left;
+}
+.fechas span{
+    color: rgb(205, 103, 66);
+}
+
+.btn-inscripcion{
+   text-align: right;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   overflow: auto;
+}
+
+.btn-inscripcion button{
+    float: right;
+}
+
+.btn-inscripcion button:hover{
+    transform: translateY(-4px);
+}
+
+/*
+boton de Leer mas
+*/
+.curso{
+    
+    border-radius: 6px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 14px 6px 10px 0px rgba(0, 0, 0, 0.8);
+}
+
+.curso:hover{
+    
+    border-radius: 6px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 14px 6px 10px 0px rgba(45, 55, 185, 0.8);
+}
+
+.extra{
+    display: none;
+}
+
+.p{
+    display: inline;
+}
+
+input[type="checkbox"]{
+    height: 2rem;
+    display: block;
+    appearance: none;
+}
+
+label{
+    position: relative;
+    padding: 1rem;
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+}
+
+label::before{
+    content: "Mas";
+}
+
+input[type="checkbox"]:checked ~ label::before{
+    content: "Menos";
+}
+
+.dots:has(~ input[type="checkbox"]:checked){
+  display: none;
+} 
+
+.extra:has(~ input[type="checkbox"]:checked){
+    display: inline;
+  }

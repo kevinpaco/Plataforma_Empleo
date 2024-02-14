@@ -1,0 +1,36 @@
+<div class="row cursos-contenedor">
+    <div class="container">
+   <!--Filtro-->
+        <div class="row col-md-5 offset-md-4 col-11 offset-1 filtro">
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Categoria</option>
+                    <option>Informatica</option>
+                    <option>Idiomas</option>
+                    <option>Marketing</option>
+                </select>
+            </div>
+            <div class="col">
+                <button class="btn btn-info">Filtrar</button>
+             </div>
+        </div>
+        <!--Cursos-->
+        <div class="row curso col-md-8 offset-md-2 col-10 offset-1" *ngFor="let curso of cursos,let i=index">
+          <img class="col-md-3 col-12" src="../../../assets/login-fondo/fondo.jpg" alt="">      
+           <div class="col-md-9 col-12">
+                <h2 class="curso-title">{{curso.nombreCurso}}</h2>
+                <h4 class="subtitle">{{curso.categoria}}</h4>
+                <p class="descripcion">{{curso.descripcion}}</p>
+                <p class="vacantes">Cantidad Vacantes: {{curso.vacantes}}</p>
+                
+                <div class="btn-inscripcion">
+                    <p class="fechas">
+                        fecha Inicio: <span>{{curso.fechaInicio}}</span>,
+                         fecha de Fin: <span>{{curso.fechaFin}}</span>
+                    </p>
+                    <button class="btn btn-primary">Inscribirme</button>
+                </div>
+                </div>
+        </div>
+     </div>
+</div>

@@ -21,12 +21,22 @@ ofertaCtrl.getOfertasLaborales=async (req,res)=>{
     res.json(ofertas);
 }
 
+ofertaCtrl.getOfertaLaboral=async (req,res)=>{
+    try {
+          const oferta = await OfertaLaboral.findOne({_id:req.params.id}).populate("Ciudadanos");
+          res.json(oferta);
+    } catch (error) {
+         res.json({
+            'msg':'Error al buscar Oferta'
+         })
+    }
+}
+
 ofertaCtrl.crearOfertaLaboral=async(req,res)=>{
     var oferta = new OfertaLaboral(req.body);
     try {
         var empleador = await Empleador.findById(oferta.empleador);
         empleador.ofertasLaborales.push(oferta);
-        oferta.fechaPublicacion= Date.now();
         await Empleador.updateOne({_id:oferta.empleador},empleador);
         await oferta.save();
         res.json({

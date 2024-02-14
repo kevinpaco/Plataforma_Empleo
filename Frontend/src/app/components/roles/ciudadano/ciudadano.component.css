@@ -28,9 +28,15 @@
 }
 
 .ofertas::-webkit-scrollbar-thumb {
-    background-color: #4239f0;  /* Color del thumb (barra de arrastre) */
+    background-color: rgb(217, 230, 246);  /* Color del thumb (barra de arrastre) */
     border-radius: 10px;
 
+}
+
+.seccionOfertas:hover{
+    .ofertas::-webkit-scrollbar-thumb{
+        background-color: #76a0e8;
+    }
 }
 
 /*
@@ -58,9 +64,13 @@
 }
 
 .descripcionOferta::-webkit-scrollbar-thumb {
-    background-color: #4239f0;  /* Color del thumb (barra de arrastre) */
+    background-color: rgb(217, 230, 246);  /* Color del thumb (barra de arrastre) */
     border-radius: 10px;
 
+}
+
+.descripcionOferta:hover::-webkit-scrollbar-thumb{
+       background-color: #76a0e8;
 }
 
 /*

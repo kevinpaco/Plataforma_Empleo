@@ -1,6 +1,11 @@
+import { DatePipe } from '@angular/common';
+import { withXsrfConfiguration } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { elementAt, of } from 'rxjs';
+import { Ciudadano } from 'src/app/models/ciudadano.model';
 import { Empleador } from 'src/app/models/empleador';
 import { OfertaLaboral } from 'src/app/models/oferta-laboral';
+import { OfertaService } from 'src/app/services/oferta.service';
 import { Provincias } from 'src/app/utils/util';
 
 @Component({
@@ -16,7 +21,11 @@ export class CiudadanoComponent implements OnInit{
      mostrarOferta:boolean=false;
      empleador:Empleador;
      diasPasdados:any;
-      constructor(){
+     postulado:boolean=false;
+     fechaFiltrar:Date;
+     nombreProvincia:string;
+     
+      constructor(private ofertasService:OfertaService){
          this.provincias=new Provincias();
          this.ofertasLaborales=new Array<OfertaLaboral>();
          this.empleador=new Empleador();
@@ -26,8 +35,77 @@ export class CiudadanoComponent implements OnInit{
       ngOnInit(): void {
          this.cargarOfertas(); 
       }
-
+      
       cargarOfertas(){
+        this.ofertasLaborales=new Array<OfertaLaboral>();
+         this.ofertasService.getOfertas().subscribe(
+            (res:any)=>{
+                res.forEach((element:any)=>{                   
+                    Object.assign(this.oferta,element);
+                    this.ofertasLaborales.push(this.oferta);
+                    this.oferta=new OfertaLaboral();
+                })
+            },
+            err=>{
+                alert("Ocurrio un error al cargar ofertas");
+            }
+         )
+      }
+
+      filtrarOfertas(){
+        if(this.nombreProvincia==undefined)
+               this.nombreProvincia="";
+        if(this.fechaFiltrar!=undefined || this.nombreProvincia!=undefined){
+        let criteria={
+           next:(res:any)=>{
+              this.ofertasLaborales=res;
+           },
+           error:(err:Error)=>{console.log("error al filtrar: "+err.message)}
+        }
+         this.ofertasService.getFiltrarOfertas(this.fechaFiltrar.toString(),this.nombreProvincia)
+         .subscribe(criteria)
+        }
+      }
+
+      provinciaSeleccionada(provincia:any){
+        this.nombreProvincia=provincia.target.value;
+      }
+
+      buscarCiudadanoEnOferta(idOferta: string) {
+        const observer = {
+          next: (oferta: OfertaLaboral) => {
+           // console.log("es: "+oferta.provincia)
+             oferta.Ciudadanos.forEach((element:Ciudadano)=>{
+                if(element._id == "658fa7405b5a6b42f055333b"){
+                     this.postulado=true; 
+                }else
+                     this.postulado=false;
+             })
+          },
+          error: (err: Error) => {
+            console.log("Error al buscar oferta:", err.message);
+          },
+        };      
+        this.ofertasService.getOferta(idOferta).subscribe(observer);
+      }
+
+       postularAOferta(idOferta:string){
+        this.ofertasService.agregarCiudadanoAOferta(idOferta,"658fa7405b5a6b42f055333b")
+        .subscribe(
+          async(res:any)=>{
+            await this.buscarCiudadanoEnOferta(idOferta);
+            if(this.postulado==false)
+                 console.log("Agragado correctamente");
+            else
+                console.log("Ya esta registrado")
+          },
+          err=>{
+            console.log("Error al agragar ciudadano a la oferta: "+err)
+          }
+        )   
+      }
+
+     /* cargarOfertas(){
       let emp = new Empleador();
       emp.nombreComercial="CompuMundoIpermegaRed";
       emp.domicilio="San Salvador De Jujuy";
@@ -70,7 +148,7 @@ export class CiudadanoComponent implements OnInit{
         oferta4.principalesTareas="mantenimiento de todos las maquinas de la empresa";
         
         this.ofertasLaborales.push(oferta1,oferta2,oferta3,oferta4);
-      }
+      }*/
 
       verOferta(indice:any){
           this.mostrarOferta=true;

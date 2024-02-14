@@ -1,7 +1,7 @@
 import { Ciudadano } from "./ciudadano.model";
 
 export class Curso {
-    _id!:string
+    _id!:string;
     nombreCurso!:string;
     descripcion!:string;
     categoria!:string;

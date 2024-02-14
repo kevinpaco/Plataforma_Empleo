@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/',ofertaCtrl.getOfertasLaborales);
+router.get('/:id',ofertaCtrl.getOfertaLaboral);
 router.post('/', ofertaCtrl.crearOfertaLaboral);
 router.post('/agregar/ciudadano',ofertaCtrl.agregarCiudadano);
 router.put('/actualizar',ofertaCtrl.modificarOferta);

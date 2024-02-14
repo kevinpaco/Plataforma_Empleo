@@ -1,0 +1,9 @@
+.dropdown-menu{
+    transform: translateX(-70px);
+}
+
+@media (max-width: 992px){
+    .dropdown-menu{
+        transform: translateX(-10px);
+    }
+}

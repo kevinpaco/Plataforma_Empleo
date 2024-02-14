@@ -1,0 +1,25 @@
+.tabala-postulantes{
+   background-color:  rgb(217, 230, 246);
+}
+
+/*
+  Botones de formulario
+*/
+.btn-success:hover{
+    transform: translateY(-2px) translateX(-2px);
+    box-shadow: 6px 5px 6px 0px rgba(41, 40, 53, 0.8);
+}
+
+.btn-action{
+    margin-left: 5px;
+    padding: 0 4px 0 4px;
+    border-radius: 50%;
+}
+
+.btn-action:hover{
+    margin-left: 5px;
+    padding: 0 4px 0 4px;
+    border-radius: 50%;
+    transform: translateY(-2px) translateX(-2px);
+    box-shadow: 6px 5px 6px 0px rgba(41, 40, 53, 0.8);
+}

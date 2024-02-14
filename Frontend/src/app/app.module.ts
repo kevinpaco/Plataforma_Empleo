@@ -16,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormOfertasLaboralesComponent } from './components/form-ofertas-laborales/form-ofertas-laborales.component';
 import { FormCurriculumComponent } from './components/form-curriculum/form-curriculum.component';
+import { TablaPostulantesComponent } from './components/tabla-postulantes/tabla-postulantes.component';
+import { CursosComponent } from './components/cursos/cursos.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,14 +32,17 @@ import { FormCurriculumComponent } from './components/form-curriculum/form-curri
     EmpleadorComponent,
     EmpleadorFormComponent,
     FormOfertasLaboralesComponent,
-    FormCurriculumComponent
+    FormCurriculumComponent,
+    TablaPostulantesComponent,
+    CursosComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule
   ],
   providers: [],
