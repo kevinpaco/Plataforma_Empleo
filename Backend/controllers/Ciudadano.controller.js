@@ -11,7 +11,7 @@ ciudadanoCtrl.getCiudadanos= async (req,res)=>{
 ciudadanoCtrl.getCiudadano= async(req,res)=>{
     console.log('see esta bien '+req.params.id);
      try {
-        const ciudadano = await Ciudadano.find({_id:req.params.id}).populate("cursos");
+        const ciudadano = await Ciudadano.findOne({_id:req.params.id}).populate("cursos");
         console.log('ciu '+ciudadano.nombre);
         res.json(ciudadano);  
      } catch (error) {
@@ -56,13 +56,25 @@ ciudadanoCtrl.modificarCiudadano=async (req,res)=>{
 
 ciudadanoCtrl.buscarPorProvincia= async (req,res)=>{
     try {
-          var ciudadanos = await Ciudadano.find({provincia: req.body.provincia});
+          var ciudadanos = await Ciudadano.findOne({provincia: req.body.provincia});
           res.json(ciudadanos);
     } catch (error) {
         res.status(400).json({
             'estado':'0',
             'msg':'Error inesperado: '+ error
         })
+    }
+}
+
+ciudadanoCtrl.buscarCiudadanoPorEmail=async(req,res)=>{
+    try {
+          let ciudadano =await Ciudadano.findOne({email:req.query.email});
+          res.json(ciudadano);
+    } catch (error) {
+         res.json({
+            'status':0,
+            'msg':'Error al buscar ciudadano por email'+error
+         })
     }
 }
 

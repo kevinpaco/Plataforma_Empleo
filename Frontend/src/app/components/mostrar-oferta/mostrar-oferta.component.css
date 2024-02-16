@@ -1,0 +1,47 @@
+.container-fluid{
+    background-color: rgb(217, 230, 246);
+    margin: 0;
+}
+
+/*
+ boton de pustularse
+*/
+.btnpostular{
+   text-align: center;
+}
+
+.btn-success{
+    height: 55px;
+    width: 150px;
+    border-radius: 30px;
+    background-color: #4239f0;
+  }
+
+  .btn-success:hover{
+    height: 55px;
+    width: 150px;
+    border-radius: 30px;
+    transform: translateY(-5px);
+    box-shadow: 5px 6px 5px 0px rgba(20, 15, 71, 0.8);
+  }
+/*
+  descripcion del puesto 
+*/
+.title-puesto{
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+/*
+
+*/
+.subtitle-empleador{
+  font-family:'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: rgb(72, 62, 62);
+}
+
+.dias{
+  font-size: medium;
+  color: gray;
+}

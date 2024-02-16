@@ -1,0 +1,22 @@
+<div class="row container-fluid">
+    <section>
+        <h2>{{oferta.puestoRequerido}}</h2>
+        <h5 class="subtitle-empleador">{{oferta.empleador.nombreComercial}}</h5>
+        <h6 class="subtitle-empleador">{{oferta.provincia}}</h6>
+        <hr>
+        <h4>Descripcion de la oferta:</h4>
+        <p class="tareas">{{oferta.principalesTareas}}</p>
+        <h4>Requerimientos</h4>
+        <p class="requisitos">{{oferta.requisitos}}</p>
+        <p><span>Jornada Laboral: </span>{{oferta.jornada}}</p>
+        <h4>Beneficios: </h4>
+        <p>{{oferta.beneficio}}</p>
+        <p>Salario: {{oferta.salario}}</p>
+
+        <p class="dias">Hace {{diasPasados}} días</p>
+        <p><b>Cantidad de vacantes:</b> {{oferta.cantidadVacantes}}</p>
+        <div class="btnpostular">
+        <button class="btn btn-success" (click)="postularAOferta(oferta._id)">Postularme</button>
+        </div>
+    </section>
+</div>

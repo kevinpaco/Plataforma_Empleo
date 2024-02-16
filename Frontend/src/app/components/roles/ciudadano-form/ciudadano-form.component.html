@@ -1,43 +1,115 @@
 <div class="row">
     <div class="container">
-        <form class="form col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-10 offset-1">
-            <h2 class="title">Ciudadano</h2>
-             <div class="form-group">
-                <label class="form-label" for="nombre">Nombre: </label>
-                <input type="text" class="form-control" placeholder="Ingrese nombre" id="nombre" name="form" />
-             </div>
-             <div class="form-group">
-                <label class="form-label" for="dni">Dni: </label>
-                <input type="text" class="form-control" placeholder="Ingrese nombre" id="dni" name="dni" />
-             </div>
-             <div class="form-group">
-               <label class="form-label" for="email">Email: </label>
-               <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1">@</span>
-                  <input type="email" class="form-control" placeholder="Ingrese email" aria-label="email" aria-describedby="basic-addon1">
-                </div>
-            </div>
+      <!--Fomulario-->
+        <form [formGroup]="formCiu" novalidate (ngSubmit)="validarCiudadanoInexistente($event)" class="form col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-10 offset-1">
+           <!--Titulo de formulario-->
+             <h2 class="title">Ciudadano</h2>
+           <!--Cuerpo de formulario-->
             <div class="form-group">
-               <label class="form-label" for="password">Contraseña: </label>
-               <input type="password" class="form-control" placeholder="Ingrese contraseña" id="password" name="form" />
-            </div>
+                <label class="form-label" for="nombre">Nombre: <span class="text-danger fw-bold">*</span> </label>
+                <input type="text" class="form-control" placeholder="Ingrese nombre" id="nombre" name="nombre"
+                 formControlName="nombre" [ngClass]="{ 'is-invalid':formCiu.get('nombre')?.invalid
+                  && formCiu.get('nombre')?.touched, 'is-valid':formCiu.get('nombre')?.valid && formCiu.get('nombre')?.touched}"
+                  [value]="ciudadano.nombre" />
+                  <p *ngIf="formCiu.get('nombre')?.invalid && formCiu.get('nombre')?.touched" class="invalid-feedback">
+                     <small>Ingrese Nombre</small>
+                  </p>
+                  <p *ngIf="formCiu.get('nombre')?.valid && formCiu.get('nombre')?.touched" clss="valid-feedback">
+                     <small>Correcto</small>
+                  </p>
+             </div>
+
              <div class="form-group">
-                <label class="form-label" for="provincia">Provincia: </label>
+                <label class="form-label" for="dni">Dni: <span class="text-danger fw-bold">*</span> </label>
+                <input type="number" class="form-control" placeholder="Ingrese dni" id="dni" name="dni"
+                formControlName="dni" [ngClass]="{'is-invalid':formCiu.get('dni')?.errors && formCiu.get('dni')?.touched,
+                'is-valid':formCiu.get('dni')?.valid && formCiu.get('dni')?.touched}" 
+                [value]="ciudadano.dni"/>
+
+                <p *ngIf="formCiu.get('dni')?.hasError && formCiu.get('dni')?.touched" class="invalid-feedback">
+                  <small>Dni debe tener 8 dijitos</small>
+                </p>
+                <p *ngIf="formCiu.get('dni')?.valid && formCiu.get('dni')?.touched" class="valid-feedback">
+                  <small>Correcto</small>
+                </p>
+             </div>
+            <!-- Email -->
+          <div class="mb-4">
+            <label for="idEmailUsuario" class="form-label">Email <span class="text-danger fw-bold">*</span></label>
+            <div class="input-group mb-3">
+                           <span class="input-group-text" id="basic-addon1">@</span>
+                   <input type="email" class="form-control" id="idEmailUsuario" name="emailUsuario"
+                    placeholder="Ingrese e-mail" formControlName="email" [ngClass]="{ 'is-invalid': formCiu.get('email')?.errors && formCiu.get('email')?.touched,
+                          'is-valid': formCiu.get('email')?.valid && formCiu.get('email')?.touched}" [value]="ciudadano.email">
+
+            <p *ngIf=" formCiu.get('email')?.errors && formCiu.get('email')?.touched && formCiu.get('email')?.hasError('email') "
+              class="invalid-feedback">
+              <small>Email invalido, Ej: nombre123@gmail.com</small>
+            </p>
+
+           <!--<p *ngIf=" formCiu.get('email')?.invalid && formCiu.get('email')?.touched && formCiu.get('email')?.hasError('email') "
+              class="invalid-feedback">
+              <small>Ingrese email</small>
+            </p>-->
+
+            <p *ngIf="formCiu.get('email')?.valid && formCiu.get('email')?.touched" class="valid-feedback">
+              <small>Correcto</small>
+            </p>
+            </div>
+          </div>
+         <!--Contraseña-->
+            <div class="form-group">
+               <label class="rm-label" for="password">Contraseña: <span class="text-danger fw-bold">*</span> </label>
+               <input type="text" class="form-control" placeholder="Ingrese contraseña" id="password" name="contrasenia"
+               formControlName="contrasenia" [ngClass]="{ 'is-invalid':formCiu.get('contrasenia')?.errors && formCiu.get('contrasenia')?.touched,
+                'is-valid':formCiu.get('contrasenia')?.valid && formCiu.get('contrasenia')?.touched}"/>
+                <p *ngIf="formCiu.get('contrasenia')?.errors && formCiu.get('contrasenia')?.touched" class="invalid-feedback">
+                  <small>Debe tener 5 dijitos</small>
+                </p>
+                <p *ngIf="formCiu.get('contrasenia')?.valid && formCiu.get('contrasenia')?.touched">
+                  <small>Conrrecto</small>
+                </p>  
+         </div>
+            <!--Provincia-->
+             <div class="form-group">
+                <label class="form-label" for="provincia">Provincia: <span class="text-danger fw-bold">*</span> </label>
                 <select class="form-select" aria-label="Default select example" (change)="seleccionProvincia($event)">
                   <option selected>Opcion</option>
                   <option *ngFor="let provincia of provincias.provincias,let i = index" value="{{provincia.nombre}}">{{provincia.nombre}}</option>
                 </select>
              </div>
+             <!--Telefono-->
              <div class="form-group">
-                <label class="form-label" for="telefono">Telefono: </label>
-                <input type="text" class="form-control" placeholder="Ingrese numero de telefono" id="telefono" name="telefono" />
-             </div>
+                <label class="form-label" for="telefono">Telefono: <span class="text-danger fw-bold">*</span> </label>
+                <input type="number" class="form-control" placeholder="Ingrese numero de telefono" id="telefono" name="telefono"
+                formControlName="telefono" [ngClass]="{'is-invalid': formCiu.get('telefono')?.invalid && formCiu.get('telefono')?.touched,
+                 'is-valid':formCiu.get('telefono')?.valid && formCiu.get('telefono')?.touched}"/>
+
+                 <p *ngIf="formCiu.get('telefono')?.invalid && formCiu.get('telefono')?.touched" class="invalid-feedback">
+                  <small>Ingrese numero de telefono</small>
+                 </p>
+                 <p *ngIf="formCiu.get('telefono')?.valid && formCiu.get('telefono')?.touched">
+                  <small>Correcto</small>
+                 </p>
+             
+              </div>
+              <!--Fecha de nacimiento-->
              <div class="form-group">
-                <label class="form-label" for="fechaNacimiento">Fecha de Nacimiento: </label>
-                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" max="2006-01-01"/>
+                <label class="form-label" for="fechaNacimiento">Fecha de Nacimiento: <span class="text-danger fw-bold">*</span> </label>
+                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" max="2006-01-01"
+                formControlName="fechaNacimiento" [ngClass]="{ 'is-invalid': formCiu.get('fechaNacimiento')?.errors && formCiu.get('fechaNacimiento')?.touched,
+                 'is-valid':formCiu.get('fechaNacimiento')?.valid && formCiu.get('fechaNacimiento')?.touched}"/>
+
+                 <p *ngIf="formCiu.get('fechaNacimiento')?.errors && formCiu.get('fechaNacimiento')?.touched" class="invalid-feedback">
+                  <small>Ingrese fecha de Nacimiento</small>
+                 </p> 
+                 <p *ngIf="formCiu.get('fechaNacimiento')?.valid && formCiu.get('fechaNacimiento')?.touched" class="invalid-feedback">
+                  <small>Correcto</small>
+                 </p>
              </div>
+             <!--estado civil-->
              <div class="form-group" (change)="seleccionEstadoCivil($event)">
-               <label class="form-label" for="estadoCivil">Estado Civil:  </label>
+               <label class="form-label" for="estadoCivil">Estado Civil: <span class="text-danger fw-bold">*</span>  </label>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Soltero" >
                   <label class="form-check-label" for="inlineRadio1">Soltero</label>
@@ -46,9 +118,12 @@
                   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Casado" >
                   <label class="form-check-label" for="inlineRadio2">Casado</label>
                 </div>
+                <p class="invalid-feedback">
+                  <small>Selecione Estado Civil</small>
+                </p>
              </div>
              <div class="form-group">
-               <button type="submit" class="btn btn-success">Enviar</button>
+               <button type="submit" class="btn btn-success" >Enviar</button>
                <button type="submit" [routerLink]="['/login']" class="btn btn-danger">Cancelar</button>
                </div>
         </form>

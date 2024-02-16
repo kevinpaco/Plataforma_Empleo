@@ -7,6 +7,7 @@ const router = express.Router();
 //rutas para la gestion de ciudadanos
 
 router.get('/',ciudadanoCtrl.getCiudadanos);
+router.get('/email',ciudadanoCtrl.buscarCiudadanoPorEmail);
 router.post('/', ciudadanoCtrl.crearCiudadano);
 router.put('/actualizar', ciudadanoCtrl.modificarCiudadano);
 router.get('/buscar/:id',ciudadanoCtrl.getCiudadano);

@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { withXsrfConfiguration } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { elementAt, of } from 'rxjs';
 import { Ciudadano } from 'src/app/models/ciudadano.model';
 import { Empleador } from 'src/app/models/empleador';
@@ -25,7 +26,7 @@ export class CiudadanoComponent implements OnInit{
      fechaFiltrar:Date;
      nombreProvincia:string;
      
-      constructor(private ofertasService:OfertaService){
+      constructor(private ofertasService:OfertaService,private router:Router ){
          this.provincias=new Provincias();
          this.ofertasLaborales=new Array<OfertaLaboral>();
          this.empleador=new Empleador();
@@ -51,19 +52,26 @@ export class CiudadanoComponent implements OnInit{
             }
          )
       }
-
+     /**Filtra las ofertas segun la fecha y el nombre de provincia */
       filtrarOfertas(){
+       // console.log("ancho:"+window.innerWidth+" ALtura: "+window.screen.height)
+       // console.log("fff: "+(new Date().getFullYear()-2))
         if(this.nombreProvincia==undefined)
                this.nombreProvincia="";
+        if(this.fechaFiltrar==undefined)
+              this.fechaFiltrar=new Date(new Date().getFullYear+"-"+"01"+"-"+"01");//si la fecha en undefined se le asigna una fecha 2 años antes
         if(this.fechaFiltrar!=undefined || this.nombreProvincia!=undefined){
-        let criteria={
-           next:(res:any)=>{
-              this.ofertasLaborales=res;
-           },
-           error:(err:Error)=>{console.log("error al filtrar: "+err.message)}
-        }
-         this.ofertasService.getFiltrarOfertas(this.fechaFiltrar.toString(),this.nombreProvincia)
-         .subscribe(criteria)
+          //console.log("f: "+this.fechaFiltrar+" prov: "+this.nombreProvincia)
+            let criteria={
+               next:(res:any)=>{
+                  console.log("res: "+res)
+                  this.ofertasLaborales=res;
+               },
+               error:(err:Error)=>{console.log("error al filtrar: "+err.message)}
+            }
+           
+             this.ofertasService.getFiltrarOfertas(this.fechaFiltrar.toString(),this.nombreProvincia)
+             .subscribe(criteria)
         }
       }
 
@@ -151,11 +159,15 @@ export class CiudadanoComponent implements OnInit{
       }*/
 
       verOferta(indice:any){
-          this.mostrarOferta=true;
+         if(window.innerWidth > 986){
+           this.mostrarOferta=true;
            this.empleador= this.ofertasLaborales[indice].empleador;
            this.oferta=this.ofertasLaborales[indice];
            this.diasPasdados = new Date().getDay() - new Date(this.ofertasLaborales[indice].fechaPublicacion).getDay();
-          }
+         }else{
+             this.router.navigate(['ciudadano/oferta/'+this.ofertasLaborales[indice]._id]);
+         }
+        }
 
     /* @HostListener('window:resize', ['$event'])
   onResize(event: Event) {

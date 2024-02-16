@@ -19,6 +19,7 @@ import { FormCurriculumComponent } from './components/form-curriculum/form-curri
 import { TablaPostulantesComponent } from './components/tabla-postulantes/tabla-postulantes.component';
 import { CursosComponent } from './components/cursos/cursos.component';
 import { CommonModule } from '@angular/common';
+import { MostrarOfertaComponent } from './components/mostrar-oferta/mostrar-oferta.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CommonModule } from '@angular/common';
     FormOfertasLaboralesComponent,
     FormCurriculumComponent,
     TablaPostulantesComponent,
-    CursosComponent
+    CursosComponent,
+    MostrarOfertaComponent
   ],
   imports: [
     CommonModule,

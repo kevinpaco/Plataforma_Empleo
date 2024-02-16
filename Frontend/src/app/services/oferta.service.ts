@@ -42,7 +42,7 @@ export class OfertaService {
   }
 
   getFiltrarOfertas(fechaSeleccionada:string,nombreProvincia:string){
-    console.log("serv: "+fechaSeleccionada)
+    console.log("serv: "+nombreProvincia)
      const httpOption={
       headers:new HttpHeaders({
         'content-type':'application/json'

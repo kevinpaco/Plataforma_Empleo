@@ -10,6 +10,7 @@ import { FormOfertasLaboralesComponent } from './components/form-ofertas-laboral
 import { FormCurriculumComponent } from './components/form-curriculum/form-curriculum.component';
 import { TablaPostulantesComponent } from './components/tabla-postulantes/tabla-postulantes.component';
 import { CursosComponent } from './components/cursos/cursos.component';
+import { MostrarOfertaComponent } from './components/mostrar-oferta/mostrar-oferta.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -23,8 +24,8 @@ const routes: Routes = [
   {path:'ciudadano/principal',component:CiudadanoComponent},
   {path:'ciudadano/generar/curriculum',component:FormCurriculumComponent},
   {path:'ciudadano-form/:id',component:CiudadanoFormComponent},
-  {path:'ciudadano/cursos',component:CursosComponent}
-
+  {path:'ciudadano/cursos',component:CursosComponent},
+  {path:'ciudadano/oferta/:idOferta',component:MostrarOfertaComponent}
 ];
 
 @NgModule({
