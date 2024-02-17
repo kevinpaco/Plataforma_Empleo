@@ -23,7 +23,6 @@ export class Ciudadano extends Login{
     this.estadoCivil='';
     this.telefono= 0;
     this.fechaNacimiento!='';
-    this.curriculum=new Curriculum();
     this.cursos=new Array<Curso>();
     this.ofertasLaborales= new Array<OfertaLaboral>();        
     }

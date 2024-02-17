@@ -5,6 +5,8 @@ import { Provincia } from 'src/app/models/provincia.model';
 import { Provincias } from 'src/app/utils/util';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { CiudadanoService } from 'src/app/services/ciudadano.service';
+import { CurrencyPipe } from '@angular/common';
+import { Curriculum } from 'src/app/models/curriculum';
   
   @Component({
     selector: 'app-ciudadano-form',
@@ -15,7 +17,8 @@ import { CiudadanoService } from 'src/app/services/ciudadano.service';
     opcion:any;  
     ciudadano: Ciudadano;
     provincias:Provincias;
-    formCiu!:FormGroup; 
+    formCiu!:FormGroup;
+    estadoCivilAct:boolean=false; 
       constructor(private router: Router , private route: ActivatedRoute,private formBuilder:FormBuilder,private ciudadanoService:CiudadanoService){
       this.ciudadano=new Ciudadano();
       this.provincias=new Provincias();
@@ -69,7 +72,6 @@ import { CiudadanoService } from 'src/app/services/ciudadano.service';
           'provincia':['',[Validators.required]],
           'telefono':['',[Validators.required]],
           'fechaNacimiento':['',[Validators.required]],
-          'estadoCivil':['',[Validators.required]]
         })
      }
 
@@ -96,24 +98,27 @@ import { CiudadanoService } from 'src/app/services/ciudadano.service';
     }
 
      seleccionProvincia(prov:any){
-         alert("provincia elegida: "+prov.target.value);
+         
      }
 
      seleccionEstadoCivil(estado:any){
-         alert("estado vicil: "+estado.target.value)
+       
+         this.ciudadano.estadoCivil=estado.target.value;
      }
 
-
+    /**Valida que el usuario no exista en la base de datos */
      validarCiudadanoInexistente(event:Event){
-         event.preventDefault();
-         console.log("seee")
-         let ciudadano=new Ciudadano();
+         event.preventDefault();   
+
          const criteria={
           next:(res:any)=>{
-            console.log(res)
             if(res==null){
-               Object.assign(ciudadano,res);
-               this.guardarCiudadano(ciudadano);
+              if(this.ciudadano.estadoCivil=='' || this.ciudadano.estadoCivil==undefined){
+                    this.estadoCivilAct=true;
+              }else{                
+               Object.assign(this.ciudadano,this.formCiu.value);
+               this.guardarCiudadano();
+              }
             }else{
               console.log('ciudadano ya existe');
             }
@@ -124,8 +129,17 @@ import { CiudadanoService } from 'src/app/services/ciudadano.service';
          .subscribe(criteria);
      }
 
-     guardarCiudadano(ciudadano:Ciudadano){
-
+     guardarCiudadano(){
+      
+      let criteria={
+        next:(res:any)=>{
+            alert("ciudadano guardado")
+            this.router.navigate(['ciudadano/principal'])
+        },
+        error:(err:Error)=>{console.log("error al guardar: "+err) }
+      }
+      this.ciudadanoService.postGuardarCiudadano(this.ciudadano)
+        .subscribe(criteria)
      }
   }
   

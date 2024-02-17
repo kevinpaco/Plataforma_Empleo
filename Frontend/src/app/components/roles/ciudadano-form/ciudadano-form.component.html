@@ -1,12 +1,12 @@
 <div class="row">
     <div class="container">
       <!--Fomulario-->
-        <form [formGroup]="formCiu" novalidate (ngSubmit)="validarCiudadanoInexistente($event)" class="form col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-10 offset-1">
+        <form [formGroup]="formCiu" (ngSubmit)="validarCiudadanoInexistente($event)" class="form col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-10 offset-1">
            <!--Titulo de formulario-->
              <h2 class="title">Ciudadano</h2>
            <!--Cuerpo de formulario-->
             <div class="form-group">
-                <label class="form-label" for="nombre">Nombre: <span class="text-danger fw-bold">*</span> </label>
+                <label class="form-label" for="nombre">Nombre: (<span class="text-danger fw-bold">*</span>) </label>
                 <input type="text" class="form-control" placeholder="Ingrese nombre" id="nombre" name="nombre"
                  formControlName="nombre" [ngClass]="{ 'is-invalid':formCiu.get('nombre')?.invalid
                   && formCiu.get('nombre')?.touched, 'is-valid':formCiu.get('nombre')?.valid && formCiu.get('nombre')?.touched}"
@@ -20,7 +20,7 @@
              </div>
 
              <div class="form-group">
-                <label class="form-label" for="dni">Dni: <span class="text-danger fw-bold">*</span> </label>
+                <label class="form-label" for="dni">Dni: (<span class="text-danger fw-bold">*</span>) </label>
                 <input type="number" class="form-control" placeholder="Ingrese dni" id="dni" name="dni"
                 formControlName="dni" [ngClass]="{'is-invalid':formCiu.get('dni')?.errors && formCiu.get('dni')?.touched,
                 'is-valid':formCiu.get('dni')?.valid && formCiu.get('dni')?.touched}" 
@@ -35,7 +35,7 @@
              </div>
             <!-- Email -->
           <div class="mb-4">
-            <label for="idEmailUsuario" class="form-label">Email <span class="text-danger fw-bold">*</span></label>
+            <label for="idEmailUsuario" class="form-label">Email: (<span class="text-danger fw-bold">*</span>)</label>
             <div class="input-group mb-3">
                            <span class="input-group-text" id="basic-addon1">@</span>
                    <input type="email" class="form-control" id="idEmailUsuario" name="emailUsuario"
@@ -59,7 +59,7 @@
           </div>
          <!--Contraseña-->
             <div class="form-group">
-               <label class="rm-label" for="password">Contraseña: <span class="text-danger fw-bold">*</span> </label>
+               <label class="rm-label" for="password">Contraseña: (<span class="text-danger fw-bold">*</span>) </label>
                <input type="text" class="form-control" placeholder="Ingrese contraseña" id="password" name="contrasenia"
                formControlName="contrasenia" [ngClass]="{ 'is-invalid':formCiu.get('contrasenia')?.errors && formCiu.get('contrasenia')?.touched,
                 'is-valid':formCiu.get('contrasenia')?.valid && formCiu.get('contrasenia')?.touched}"/>
@@ -72,15 +72,21 @@
          </div>
             <!--Provincia-->
              <div class="form-group">
-                <label class="form-label" for="provincia">Provincia: <span class="text-danger fw-bold">*</span> </label>
-                <select class="form-select" aria-label="Default select example" (change)="seleccionProvincia($event)">
+                <label class="form-label" for="provincia">Provincia: (<span class="text-danger fw-bold">*</span>) </label>
+                <select class="form-select" aria-label="Default select example" (change)="seleccionProvincia($event)"
+                formControlName="provincia" [ngClass]="{'is-invalid': formCiu.get('provincia')?.errors && formCiu.get('provincia')?.touched,
+                  'is-valid':formCiu.get('provincia')?.valid && formCiu.get('provincia')?.touched}">
                   <option selected>Opcion</option>
                   <option *ngFor="let provincia of provincias.provincias,let i = index" value="{{provincia.nombre}}">{{provincia.nombre}}</option>
                 </select>
+
+                <p *ngIf="formCiu.get('provincia')?.errors && formCiu.get('provincia')?.touched" class="invalid-feedback">
+                  <small>Debe elegir Provincia</small>
+                </p>
              </div>
              <!--Telefono-->
              <div class="form-group">
-                <label class="form-label" for="telefono">Telefono: <span class="text-danger fw-bold">*</span> </label>
+                <label class="form-label" for="telefono">Telefono: (<span class="text-danger fw-bold">*</span>) </label>
                 <input type="number" class="form-control" placeholder="Ingrese numero de telefono" id="telefono" name="telefono"
                 formControlName="telefono" [ngClass]="{'is-invalid': formCiu.get('telefono')?.invalid && formCiu.get('telefono')?.touched,
                  'is-valid':formCiu.get('telefono')?.valid && formCiu.get('telefono')?.touched}"/>
@@ -95,7 +101,7 @@
               </div>
               <!--Fecha de nacimiento-->
              <div class="form-group">
-                <label class="form-label" for="fechaNacimiento">Fecha de Nacimiento: <span class="text-danger fw-bold">*</span> </label>
+                <label class="form-label" for="fechaNacimiento">Fecha de Nacimiento: (<span class="text-danger fw-bold">*</span>) </label>
                 <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" max="2006-01-01"
                 formControlName="fechaNacimiento" [ngClass]="{ 'is-invalid': formCiu.get('fechaNacimiento')?.errors && formCiu.get('fechaNacimiento')?.touched,
                  'is-valid':formCiu.get('fechaNacimiento')?.valid && formCiu.get('fechaNacimiento')?.touched}"/>
@@ -109,21 +115,23 @@
              </div>
              <!--estado civil-->
              <div class="form-group" (change)="seleccionEstadoCivil($event)">
-               <label class="form-label" for="estadoCivil">Estado Civil: <span class="text-danger fw-bold">*</span>  </label>
+               <label class="form-label" for="estadoCivil">Estado Civil: (<span class="text-danger fw-bold">*</span>)  </label>
+               <div> 
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Soltero" >
-                  <label class="form-check-label" for="inlineRadio1">Soltero</label>
-                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Casado" >
-                  <label class="form-check-label" for="inlineRadio2">Casado</label>
-                </div>
-                <p class="invalid-feedback">
-                  <small>Selecione Estado Civil</small>
-                </p>
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Soltero" >
+                    <label class="form-check-label" for="inlineRadio1">Soltero</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Casado" >
+                    <label class="form-check-label" for="inlineRadio2">Casado</label>
+                  </div>
+                  <p *ngIf="estadoCivilAct==true" class="estadoCivil">
+                    <small>Selecione Estado Civil</small>
+                  </p>
+               </div>
              </div>
              <div class="form-group">
-               <button type="submit" class="btn btn-success" >Enviar</button>
+               <button type="submit" class="btn btn-success" [disabled]="formCiu.invalid">Enviar</button>
                <button type="submit" [routerLink]="['/login']" class="btn btn-danger">Cancelar</button>
                </div>
         </form>

@@ -56,7 +56,7 @@ ciudadanoCtrl.modificarCiudadano=async (req,res)=>{
 
 ciudadanoCtrl.buscarPorProvincia= async (req,res)=>{
     try {
-          var ciudadanos = await Ciudadano.findOne({provincia: req.body.provincia});
+          var ciudadanos = await Ciudadano.findOne({provincia: req.query.provincia});
           res.json(ciudadanos);
     } catch (error) {
         res.status(400).json({

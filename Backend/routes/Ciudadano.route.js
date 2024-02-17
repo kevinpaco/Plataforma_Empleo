@@ -12,5 +12,5 @@ router.post('/', ciudadanoCtrl.crearCiudadano);
 router.put('/actualizar', ciudadanoCtrl.modificarCiudadano);
 router.get('/buscar/:id',ciudadanoCtrl.getCiudadano);
 router.delete('/eliminar/:id',ciudadanoCtrl.eliminarCiudadano);
-router.post('/filtrar/',ciudadanoCtrl.buscarPorProvincia);
+router.get('/filtrar/',ciudadanoCtrl.buscarPorProvincia);
 module.exports= router;
