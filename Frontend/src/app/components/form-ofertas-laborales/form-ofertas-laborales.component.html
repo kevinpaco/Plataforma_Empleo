@@ -1,56 +1,138 @@
 <div class="row generar-oferta">
     <div class="container col-7">
-    <form class="row g-3 form-oferta">
+    <form [formGroup]="formOfe"  novalidate (ngSubmit)="guardarOferta($event)" class="row g-3 form-oferta">
         <h2 class="title">Oferta Laboral</h2>
         <div class="col-md-4">
           <label for="validationCustom01" class="form-label">Puesto Requerido: </label>
-          <input type="text" class="form-control" id="validationCustom01" placeholder="Ingrese el puesto requerido">
-        </div>
+          <input type="text" class="form-control" id="validationCustom01" placeholder="Ingrese el puesto requerido"
+          formControlName="puestoRequerido" [ngClass]="{ 'is-invalid': formOfe.get('puestoRequerido')?.invalid && formOfe.get('puestoRequerido')?.touched,
+        'is-valid': formOfe.get('puestoRequerido')?.valid && formOfe.get('puestoRequerido')?.touched}" [value]="ofertaLaboral.puestoRequerido">
+        <p *ngIf="formOfe.get('puestoRequerido')?.invalid && formOfe.get('puestoRequerido')?.touched" class="invalid-feedback">
+          <small>Ingrese puesto requerido</small>
+        </p> 
+        <p *ngIf="formOfe.get('puestoRequerido')?.valid && formOfe.get('puestoRequerido')?.touched" class="valid-feedback" >
+          <small>Correcto</small>
+        </p>
+      </div>
         <div class="col-md-3">
             <label for="validationCustom04" class="form-label">Provincia: </label>
-            <select class="form-select" id="validationCustom04" >
+            <select class="form-select" id="validationCustom04" formControlName="provincia" [ngClass]="{ 'is-invalid': formOfe.get('provincia')?.invalid && formOfe.get('provincia')?.touched,
+            'is-valid': formOfe.get('provincia')?.valid && formOfe.get('provincia')?.touched}" [value]="ofertaLaboral.provincia">
               <option selected disabled value="">opciones</option>
-              <option>...</option>
+              <option *ngFor="let provincia of provincias.provincias,let i=index" [value]="provincia.nombre" >{{provincia.nombre}}</option>
             </select>
+            <p *ngIf="formOfe.get('provincia')?.invalid && formOfe.get('provincia')?.touched" class="invalid-feedback">
+              <small>Ingrese provincia</small>
+            </p> 
+            <p *ngIf="formOfe.get('provincia')?.valid && formOfe.get('provincia')?.touched" class="valid-feedback" >
+              <small>Correcto</small>
+            </p>
           </div>
         <div class="col-md-4">
-          <label for="validationCustom02" class="form-label">Telefono: </label>
-          <input type="number" class="form-control" id="validationCustom02" placeholder="Ingrese telefono" >
+          <label for="validationCustom02" class="form-label">Contacto: </label>
+          <input type="number" class="form-control" id="validationCustom02" placeholder="Ingrese telefono" 
+          formControlName="datosContacto" [ngClass]="{ 'is-invalid': formOfe.get('datosContacto')?.invalid && formOfe.get('datosContacto')?.touched,
+          'is-valid': formOfe.get('datosContacto')?.valid && formOfe.get('datosContacto')?.touched}" [value]="ofertaLaboral.datosContacto">
+          <p *ngIf="formOfe.get('datosContacto')?.invalid && formOfe.get('datosContacto')?.touched" class="invalid-feedback">
+            <small>Ingrese datos de contacto</small>
+          </p> 
+          <p *ngIf="formOfe.get('datosContacto')?.valid && formOfe.get('datosContacto')?.touched" class="valid-feedback" >
+            <small>Correcto</small>
+          </p>
         </div>
         <div class="col-md-3">
           <label for="cantVacantes" class="form-label">Cantidad de Vacantes: </label>
-            <input type="number" class="form-control" id="cantVacantes" placeholder="Ingrese vantidad de Vacantes" >
-        </div>
+            <input type="number" class="form-control" id="cantVacantes" placeholder="Ingrese vantidad de Vacantes"
+            formControlName="cantidadVacantes" [ngClass]="{ 'is-invalid': formOfe.get('cantidadVacantes')?.invalid && formOfe.get('cantidadVacantes')?.touched,
+        'is-valid': formOfe.get('cantidadVacantes')?.valid && formOfe.get('cantidadVacantes')?.touched}" [value]="ofertaLaboral.cantidadVacantes" />
+            <p *ngIf="formOfe.get('cantidadVacantes')?.invalid && formOfe.get('cantidadVacantes')?.touched" class="invalid-feedback">
+              <small>Ingrese una cantidad de vacantes</small>
+            </p> 
+            <p *ngIf="formOfe.get('cantidadVacantes')?.valid && formOfe.get('cantidadVacantes')?.touched" class="valid-feedback" >
+              <small>Correcto</small>
+            </p>
+          </div>
         <div class="col-md-8">
           <label for="descripcion" class="form-label">Descripcion de puesto: </label>
-          <textarea class="form-control" id="descripcion" placeholder="Ingrese descripcion"> </textarea>
+          <textarea class="form-control" id="descripcion" placeholder="Ingrese descripcion" formControlName="resumenPuesto" [ngClass]="{ 'is-invalid': formOfe.get('resumenPuesto')?.invalid && formOfe.get('resumenPuesto')?.touched,
+          'is-valid': formOfe.get('resumenPuesto')?.valid && formOfe.get('resumenPuesto')?.touched}" [value]="ofertaLaboral.resumenPuesto"> </textarea>
+          <p *ngIf="formOfe.get('resumenPuesto')?.invalid && formOfe.get('resumenPuesto')?.touched" class="invalid-feedback">
+            <small>Ingrese un resumen de la vacante</small>
+          </p> 
+          <p *ngIf="formOfe.get('resumenPuesto')?.valid && formOfe.get('resumenPuesto')?.touched" class="valid-feedback" >
+            <small>Correcto</small>
+          </p>
         </div>     
         <div class="col-md-3">
           <label for="jornada" class="form-label">Jornada laboral: </label>
-          <input type="text" class="form-control" id="jornada" placeholder="Ingrese Jornada laboral">
+          <input type="text" class="form-control" id="jornada" placeholder="Ingrese Jornada laboral" formControlName="jornada" [ngClass]="{ 'is-invalid': formOfe.get('jornada')?.invalid && formOfe.get('jornada')?.touched,
+          'is-valid': formOfe.get('jornada')?.valid && formOfe.get('jornada')?.touched}" [value]="ofertaLaboral.puestoRequerido" />
+          <p *ngIf="formOfe.get('jornada')?.invalid && formOfe.get('jornada')?.touched" class="invalid-feedback">
+            <small>Ingrese la jornada laboral</small>
+          </p> 
+          <p *ngIf="formOfe.get('jornada')?.valid && formOfe.get('jornada')?.touched" class="valid-feedback" >
+            <small>Correcto</small>
+          </p>
         </div>
         <div class="col-md-8">
             <label for="tarea" class="form-label">Tareas Principales: </label>
-            <textarea class="form-control" id="tarea" placeholder="Ingrese tareas principales"> </textarea>
+            <textarea class="form-control" id="tarea" placeholder="Ingrese tareas principales" formControlName="principalesTareas" [ngClass]="{ 'is-invalid': formOfe.get('principalesTareas')?.invalid && formOfe.get('principalesTareas')?.touched,
+            'is-valid': formOfe.get('principalesTareas')?.valid && formOfe.get('principalesTareas')?.touched}" [value]="ofertaLaboral.principalesTareas"> </textarea>
+          <p *ngIf="formOfe.get('principalesTareas')?.invalid && formOfe.get('principalesTareas')?.touched" class="invalid-feedback">
+          <small>Ingrese las tareas principales</small>
+        </p> 
+        <p *ngIf="formOfe.get('principalesTareas')?.valid && formOfe.get('principalesTareas')?.touched" class="valid-feedback" >
+          <small>Correcto</small>
+        </p>
           </div> 
           <div class="col-md-3">
-            <label for="disponibilidad" class="form-label">Disponibilidad: </label>
-            <input type="text" class="form-control" id="disponibilidad" placeholder="Ingrese Jornada laboral">
+            <label for="disponibilidad" class="form-label">Disponibilidad Horaria: </label>
+            <input type="text" class="form-control" id="disponibilidad" placeholder="Ingrese Jornada laboral"
+            formControlName="disponibilidadHoraria" [ngClass]="{ 'is-invalid': formOfe.get('disponibilidadHoraria')?.invalid && formOfe.get('disponibilidadHoraria')?.touched,
+        'is-valid': formOfe.get('disponibilidadHoraria')?.valid && formOfe.get('disponibilidadHoraria')?.touched}" [value]="ofertaLaboral.disponibilidadHoraria"/>
+         <p *ngIf="formOfe.get('disponibilidadHoraria')?.invalid && formOfe.get('disponibilidadHoraria')?.touched" class="invalid-feedback">
+          <small>Ingrese la disponibilidad horaria</small>
+        </p> 
+        <p *ngIf="formOfe.get('disponibilidadHoraria')?.valid && formOfe.get('disponibilidadHoraria')?.touched" class="valid-feedback" >
+          <small>Correcto</small>
+        </p>
           </div>
           <div class="col-md-8">
-              <label for="salario" class="form-label">Salario: </label>
-              <textarea class="form-control" id="salario" placeholder="Ingrese requisitos del puesto"> </textarea>
+              <label for="salario" class="form-label">Rango Salarial: </label>
+              <textarea class="form-control" id="salario" placeholder="Ingrese rango salarial" formControlName="salario" [ngClass]="{ 'is-invalid': formOfe.get('salario')?.invalid && formOfe.get('salario')?.touched,
+              'is-valid': formOfe.get('salario')?.valid && formOfe.get('salario')?.touched}" [value]="ofertaLaboral.puestoRequerido"> </textarea>
+            <p *ngIf="formOfe.get('salario')?.invalid && formOfe.get('salario')?.touched" class="invalid-feedback">
+          <small>Ingrese salario</small>
+        </p> 
+        <p *ngIf="formOfe.get('salario')?.valid && formOfe.get('salario')?.touched" class="valsalarioid-feedback" >
+          <small>Correcto</small>
+        </p>
             </div> 
             <div class="col-md-3">
                 <label for="beneficio" class="form-label">Beneficios: </label>
-                <input type="text" class="form-control" id="bieneficio" placeholder="Ingrese Jornada laboral">
+                <input type="text" class="form-control" id="bieneficio" placeholder="Ingrese Jornada laboral"
+                formControlName="beneficio" [ngClass]="{ 'is-invalid': formOfe.get('beneficio')?.invalid && formOfe.get('beneficio')?.touched,
+        'is-valid': formOfe.get('beneficio')?.valid && formOfe.get('beneficio')?.touched}" [value]="ofertaLaboral.puestoRequerido"/>
+             <p *ngIf="formOfe.get('beneficio')?.invalid && formOfe.get('beneficio')?.touched" class="invalid-feedback">
+          <small>Ingrese Beneficios del puesto</small>
+        </p> 
+        <p *ngIf="formOfe.get('beneficio')?.valid && formOfe.get('beneficio')?.touched" class="valid-feedback" >
+          <small>Correcto</small>
+        </p>
               </div>
               <div class="col-md-8">
                   <label for="requisitos" class="form-label">Requisitos: </label>
-                  <textarea class="form-control" id="requisitos" placeholder="Ingrese requisitos del puesto"> </textarea>
+                  <textarea class="form-control" id="requisitos" placeholder="Ingrese requisitos del puesto" formControlName="requisitos" [ngClass]="{ 'is-invalid': formOfe.get('requisitos')?.invalid && formOfe.get('requisitos')?.touched,
+                  'is-valid': formOfe.get('requisitos')?.valid && formOfe.get('requisitos')?.touched}" [value]="ofertaLaboral.puestoRequerido"> </textarea>
+               <p *ngIf="formOfe.get('requisitos')?.invalid && formOfe.get('requisitos')?.touched" class="invalid-feedback">
+          <small>Ingrese requisitos del puesto</small>
+        </p> 
+        <p *ngIf="formOfe.get('requisitos')?.valid && formOfe.get('requisitos')?.touched" class="valid-feedback" >
+          <small>Correcto</small>
+        </p>
                 </div> 
         <div class="col-12">
-          <button class="btn btn-primary" type="submit">Publicar</button>
+          <button class="btn btn-primary" type="submit" [disabled]="formOfe.invalid">Publicar</button>
           <button class="btn btn-danger" [routerLink]="['/empleador/principal']" type="submit">Cancelar</button>
         </div>
       </form>

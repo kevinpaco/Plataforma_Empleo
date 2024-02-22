@@ -1,6 +1,7 @@
 import { HttpClient, HttpHandler, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { OfertaLaboral } from '../models/oferta-laboral';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,7 @@ export class OfertaService {
       return this._http.post(this.url+"ofertaLaboral/agregar/ciudadano",body,httpOption);
   }
 
-  getFiltrarOfertas(fechaSeleccionada:string,nombreProvincia:string){
+  getFiltrarOfertas(fechaSeleccionada:string,nombreProvincia:string):Observable<any>{
     console.log("serv: "+nombreProvincia)
      const httpOption={
       headers:new HttpHeaders({
@@ -50,6 +51,26 @@ export class OfertaService {
       params:new HttpParams().append('provincia',nombreProvincia).append('fechaInicio',fechaSeleccionada)
      } 
      return this._http.get(this.url+'ofertaLaboral/',httpOption);
+  }
+
+  postCrearOferta(oferta:OfertaLaboral):Observable<any>{
+     const httpOption={
+      headers:new HttpHeaders({
+        'Content-type':'application/json'
+      })
+     }
+     let body= JSON.stringify(oferta);
+     return this._http.post(this.url+'ofertaLaboral/',body,httpOption);
+  }
+
+  putActualizarOferta(oferta:OfertaLaboral):Observable<any>{
+    const httpOption={
+      headers:new HttpHeaders({
+        'Content-type':'application/json'
+      })
+     }
+     let body= JSON.stringify(oferta);
+     return this._http.put(this.url+'ofertaLaboral/actualizar',body,httpOption);
   }
 
 }

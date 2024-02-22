@@ -21,6 +21,16 @@ export class CiudadanoService {
     return this._http.get(this.url,httpOption);
   }
 
+  getCiudadano(id:string):Observable<any>{
+    const httpOption={
+      headers:new HttpHeaders({
+        'Content-type':'application/json'
+      }),
+      
+    }
+    return this._http.get(this.url+'buscar/'+id,httpOption);
+  }
+
   getCiudadanoPorEmail(email:string):Observable<any>{
      const httpOption={
       headers: new HttpHeaders({
@@ -62,6 +72,6 @@ export class CiudadanoService {
       })
     }
     let body= JSON.stringify(ciudadano);
-    return this._http.put(this.url+'acturalizar',body,httpOption);
+    return this._http.put(this.url+'actualizar',body,httpOption);
   }
 }

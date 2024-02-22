@@ -15,7 +15,7 @@ const EmpleadorSchema= new Schema({
     provincia: {type: String, required:true},
     paginaWeb: {type: String, required:true},
     descripcion: {type: String, required:true},
-    ofertasLaborales:[{type: mongoose.Schema.Types.ObjectId, ref: 'OfertasLaborales', required:false}]
+    ofertasLaborales:[{type: mongoose.Schema.Types.ObjectId, ref: 'OfertaLaboral', required:false}]
 })
 
 module.exports= mongoose.model.Empleador || mongoose.model('empleador',EmpleadorSchema);

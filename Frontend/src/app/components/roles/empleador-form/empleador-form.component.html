@@ -1,59 +1,148 @@
 <div class="row">
     <div class="container">
-        <form class="form col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-10 offset-1">
-            <h2 class="title">Empleador</h2>
-             <div class="form-group">
-                <label class="form-label" for="nombre">Nombre Comercial: </label>
-                <input type="text" class="form-control" placeholder="Ingrese nombre de comercio" id="nombre" name="form" />
+        <form [formGroup]="formEmp" (submit)="validarEmailInexistente($event)" class="row form col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-10 offset-1">
+            <h2 class="title">{{tituloForm}}</h2>
+             <div class="form-group col-md-6 col-12 ">
+                <label class="form-label" for="nombre">Nombre Comercial: (<span class="text-danger fw-bold">*</span>) </label>
+                <input type="text" class="form-control" placeholder="Ingrese nombre de comercio" id="nombre" name="form"
+                formControlName="nombreComercial" [ngClass]="{ 'is-invalid': formEmp.get('nombreComercial')?.invalid && formEmp.get('nombreComercial')?.touched,
+                 'is-valid': formEmp.get('nombreComercial')?.valid && formEmp.get('nombreComercial')?.touched}" [value]="empleador.nombreComercial"/>
+
+                 <p *ngIf="formEmp.get('nombreComercial')?.invalid && formEmp.get('nombreComercial')?.touched" class="invalid-feedback">
+                  <small>Ingrese Nombre Comercial</small>
+                 </p>
+                 
+                 <p *ngIf="formEmp.get('nombreComercial')?.valid && formEmp.get('nombreComercial')?.touched" class="valid-feedback">
+                  <small>Correcto</small>
+                 </p>
              </div>
-             <div class="form-group">
-                <label class="form-label" for="cuit">Cuit: </label>
-                <input type="text" class="form-control" placeholder="Ingrese cuit" id="cuit" name="cuit" />
+             <div class="form-group col-md-6 col-12">
+                <label class="form-label" for="cuit">Cuit: (<span class="text-danger fw-bold">*</span>)</label>
+                <input type="number" class="form-control" placeholder="Ingrese cuit" id="cuit" name="cuit"
+                formControlName="cuit" [ngClass]="{'is-invalid': formEmp.get('cuit')?.errors && formEmp.get('cuit')?.touched,
+               'is-valid': formEmp.get('cuit')?.valid && formEmp.get('cuit')?.touched}" [value]="empleador.cuit"/>
+
+               <p *ngIf="formEmp.get('cuit')?.hasError && formEmp.get('cuit')?.touched" class="invalid-feedback">
+                  <small>Cuit debe tener 11 dijitos</small>
+               </p>
+               <p *ngIf="formEmp.get('cuit')?.valid && formEmp.get('cuit')?.touched" class="valid-feedback">
+                  <small>Cuit correcto</small>
+               </p>
              </div>
-             <div class="form-group">
-               <label class="form-label" for="email">Email: </label>
+             <div class="form-group col-md-6 col-12">
+               <label class="form-label" for="email">Email: (<span class="text-danger fw-bold">*</span>)</label>
                <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon1">@</span>
-                  <input type="email" class="form-control" placeholder="Ingrese email" aria-label="email" aria-describedby="basic-addon1">
+                  <input type="email" class="form-control" placeholder="Ingrese email" aria-label="email" aria-describedby="basic-addon1"
+                  formControlName="email" [ngClass]="{'is-invalid': formEmp.get('email')?.errors && formEmp.get('email')?.touched,
+                  'is-valid': formEmp.get('email')?.valid && formEmp.get('email')?.touched}" [value]="empleador.email"/>
+
+                <p *ngIf="formEmp.get('email')?.hasError && formEmp.get('email')?.touched" class="invalid-feedback">
+                     <small>Incorrecto, ej: nombre@gmail.com</small>
+                  </p>
+                  <p *ngIf="formEmp.get('email')?.valid && formEmp.get('email')?.touched" class="valid-feedback">
+                     <small>Email correcto</small>
+                  </p>
                 </div>
             </div>
-            <div class="form-group">
-               <label class="form-label" for="password">Contraseña: </label>
-               <input type="password" class="form-control" placeholder="Ingrese contraseña" id="password" name="form" />
+            <div class="form-group col-md-6 col-12">
+               <label class="form-label" for="password">Contraseña: (<span class="text-danger fw-bold">*</span>)</label>
+               <input type="text" class="form-control" placeholder="Ingrese contraseña" id="password" name="form" 
+               formControlName="contrasenia" [ngClass]="{'is-invalid': formEmp.get('contrasenia')?.errors && formEmp.get('contrasenia')?.touched,
+                  'is-valid': formEmp.get('contrasenia')?.valid && formEmp.get('contrasenia')?.touched}" [value]="empleador.contrasenia"/>
+               <p *ngIf="formEmp.get('contrasenia')?.hasError && formEmp.get('contrasenia')?.touched" class="invalid-feedback">
+                  <small>Debe tener al menos 5 dijitos</small>
+               </p>
+               <p *ngIf="formEmp.get('contrasenia')?.valid && formEmp.get('contrasenia')?.touched" class="valid-feedback">
+                  <small>Contraseña correcta</small>
+               </p>
             </div>
-             <div class="form-group">
-                <label class="form-label" for="provincia">Provincia: </label>
-                <select class="form-select" aria-label="Default select example">
+             <div class="form-group col-md-6 col-12">
+                <label class="form-label" for="provincia">Provincia: (<span class="text-danger fw-bold">*</span>)</label>
+                <select class="form-select" aria-label="Default select example" formControlName="provincia"
+                 [ngClass]="{'is-invalid': formEmp.get('provincia')?.invalid && formEmp.get('provincia')?.touched,
+                'is-valid': formEmp.get('provincia')?.valid && formEmp.get('provincia')?.touched}" [value]="empleador.provincia">
                   <option selected>Opcion</option>
-                  <option *ngFor="let provincia of provincias,let i = index" value="{{provincia.nombre}}">{{provincia.nombre}}</option>
+                  <option *ngFor="let provincia of provincias.provincias,let i = index" value="{{provincia.nombre}}">{{provincia.nombre}}</option>
                 </select>
+
+                <p *ngIf="formEmp.get('provincia')?.invalid && formEmp.get('provincia')?.touched" class="invalid-feedback">
+                  <small>Seleccione una provincia</small>
+               </p>
+               <p *ngIf="formEmp.get('provincia')?.valid && formEmp.get('provincia')?.touched" class="valid-feedback">
+                  <small>Correcta</small>
+               </p>
              </div>
+             <div class="form-group col-md-6 col-12">
+               <label class="form-label" for="domicilio">Domicilio: (<span class="text-danger fw-bold">*</span>)</label>
+               <input type="text" class="form-control" placeholder="Ingrese domicilio" id="domicilio" name="domicilio"
+               formControlName="domicilio" [ngClass]="{'is-invalid': formEmp.get('domicilio')?.errors && formEmp.get('domicilio')?.touched,
+                  'is-valid': formEmp.get('domicilio')?.valid && formEmp.get('domicilio')?.touched}" [value]="empleador.domicilio"/>
+              
+               <p *ngIf="formEmp.get('domicilio')?.invalid && formEmp.get('domicilio')?.touched" class="invalid-feedback">
+                  <small>Ingrese domicilio actual</small>
+               </p>
+               <p *ngIf="formEmp.get('domicilio')?.valid && formEmp.get('domicilio')?.touched" class="valid-feedback">
+                  <small>Correcto</small>
+            </div>
+             <div class="form-group col-md-6 col-12">
+               <label class="form-label" for="paginaweb">Pagina Web: (<span class="text-danger fw-bold">*</span>)</label>
+               <input type="text" class="form-control" placeholder="Ingrese pagina web" id="paginaWeb" name="paginaWeb" 
+               formControlName="paginaWeb" [ngClass]="{'is-invalid': formEmp.get('paginaWeb')?.errors && formEmp.get('paginaWeb')?.touched,
+                  'is-valid': formEmp.get('paginaWeb')?.valid && formEmp.get('paginaWeb')?.touched}" [value]="empleador.paginaWeb"/>
+               <p *ngIf="formEmp.get('paginaWeb')?.invalid && formEmp.get('paginaWeb')?.touched" class="invalid-feedback">
+                  <small>Ingrese pagina Web, Ej: www.mipagina.com</small>
+               </p>
+               <p *ngIf="formEmp.get('paginaweb')?.valid && formEmp.get('paginaweb')?.touched" class="valid-feedback">
+                  <small>Correcta</small>
+            </div>
+             <div class="form-group col-md-6 col-12">
+                <label class="form-label" for="telefono">Telefono: (<span class="text-danger fw-bold">*</span>)</label>
+                <input type="number" class="form-control" placeholder="Ingrese numero de telefono" id="telefono" name="telefono" 
+                formControlName="telefono" [ngClass]="{'is-invalid': formEmp.get('telefono')?.errors && formEmp.get('telefono')?.touched,
+                  'is-valid': formEmp.get('telefono')?.valid && formEmp.get('telefono')?.touched}" [value]="empleador.telefono"/>
+                <p *ngIf="formEmp.get('telefono')?.invalid && formEmp.get('telefono')?.touched" class="invalid-feedback">
+                  <small>Ingrese telefono</small>
+               </p>
+               <p *ngIf="formEmp.get('telefono')?.valid && formEmp.get('telefono')?.touched" class="valid-feedback">
+                  <small>Telefono Correcto</small>
+               </div>
+             <div class="form-group col-md-6 col-12">
+               <label class="form-label" for="rezonSocial">Rezon Social: (<span class="text-danger fw-bold">*</span>)</label>
+               <input type="text" class="form-control" placeholder="Ingrese numero de telefono" id="rezonSocial" name="rezonSocial"
+               formControlName="rezonSocial" [ngClass]="{'is-invalid': formEmp.get('rezonSocial')?.errors && formEmp.get('rezonSocial')?.touched,
+                  'is-valid': formEmp.get('rezonSocial')?.valid && formEmp.get('rezonSocial')?.touched}" [value]="empleador.rezonSocial"/>
+               <p *ngIf="formEmp.get('rezonSocial')?.invalid && formEmp.get('rezonSocial')?.touched" class="invalid-feedback">
+                  <small>Ingrese una rezon social</small>
+               </p>
+               <p *ngIf="formEmp.get('rezonSocial')?.valid && formEmp.get('rezonSocial')?.touched" class="valid-feedback">
+                  <small>Correcto</small>
+            </div>
+             <div class="form-group col-md-6 col-12">
+                <label class="form-label" for="inicioActividad">Fecha de Inicio de Actividad: (<span class="text-danger fw-bold">*</span>)</label>
+                <input type="date" class="form-control" id="inicioActividad" name="inicioActividad" max="2006-01-01"
+                formControlName="inicioActividad" [ngClass]="{'is-invalid': formEmp.get('inicioActividad')?.errors && formEmp.get('inicioActividad')?.touched,
+                  'is-valid': formEmp.get('inicioActividad')?.valid && formEmp.get('inicioActividad')?.touched}" [value]="empleador.InicioActividad"/>
+                <p *ngIf="formEmp.get('inicioActividad')?.invalid && formEmp.get('inicioActividad')?.touched" class="invalid-feedback">
+                  <small>Seleccione fecha</small>
+               </p>
+               <p *ngIf="formEmp.get('inicioActividad')?.valid && formEmp.get('inicioActividad')?.touched" class="valid-feedback">
+                  <small>Correcto</small>
+               </div>
              <div class="form-group">
-               <label class="form-label" for="domicilio">Domicilio: </label>
-               <input type="text" class="form-control" placeholder="Ingrese domicilio" id="domicilio" name="domicilio" />
+               <label class="form-label" for="descripcion">Descripcion: (<span class="text-danger fw-bold">*</span>)</label>
+              <textarea placeholder="Ingrese decripcion" id="descripcion" name="decripcion" class="form-control" 
+              formControlName="descripcion" [ngClass]="{'is-invalid': formEmp.get('descripcion')?.errors && formEmp.get('descripcion')?.touched,
+                  'is-valid': formEmp.get('descripcion')?.valid && formEmp.get('descripcion')?.touched}" [value]="empleador.descripcion"></textarea>   
+              <p *ngIf="formEmp.get('descripcion')?.invalid && formEmp.get('descripcion')?.touched" class="invalid-feedback">
+               <small>Ingrese una descripcion del negocio</small>
+            </p>
+            <p *ngIf="formEmp.get('descripcion')?.valid && formEmp.get('descripcion')?.touched" class="valid-feedback">
+               <small>Correcto</small>
+            </p>
             </div>
              <div class="form-group">
-               <label class="form-label" for="paginaweb">Pagina Web: </label>
-               <input type="text" class="form-control" placeholder="Ingrese pagina web" id="paginaweb" name="paginaweb" />
-            </div>
-             <div class="form-group">
-                <label class="form-label" for="telefono">Telefono: </label>
-                <input type="text" class="form-control" placeholder="Ingrese numero de telefono" id="telefono" name="telefono" />
-             </div>
-             <div class="form-group">
-               <label class="form-label" for="rezonSocial">Rezon Social: </label>
-               <input type="text" class="form-control" placeholder="Ingrese numero de telefono" id="rezonSocial" name="rezonSocial" />
-            </div>
-             <div class="form-group">
-                <label class="form-label" for="inicioActividad">Fecha de Inicio de Actividad: </label>
-                <input type="date" class="form-control" id="inicioActividad" name="inicioActividad" max="2006-01-01"/>
-             </div>
-             <div class="form-group">
-               <label class="form-label" for="descripcion">Descripcion: </label>
-              <textarea placeholder="Ingrese decripcion" id="descripcion" name="decripcion" class="form-control" ></textarea>   
-            </div>
-             <div class="form-group">
-             <button type="submit" class="btn btn-success">Enviar</button>
+             <button type="submit" class="btn btn-success" [disabled]="formEmp.invalid">Enviar</button>
              <button type="submit" [routerLink]="['/login']" class="btn btn-danger">Cancelar</button>
              </div>
         </form>

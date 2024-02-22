@@ -33,7 +33,6 @@ export class OfertaLaboral {
     this.salario='';
     this.beneficio='';
     this.disponible=true;
-    this.empleador=new Empleador(); 
     this.Ciudadanos=new Array<Ciudadano>();
     }
 }

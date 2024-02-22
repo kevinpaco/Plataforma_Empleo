@@ -18,7 +18,9 @@ import { Curriculum } from 'src/app/models/curriculum';
     ciudadano: Ciudadano;
     provincias:Provincias;
     formCiu!:FormGroup;
+    modificar:boolean=false;
     estadoCivilAct:boolean=false; 
+    tituloForm:string;
       constructor(private router: Router , private route: ActivatedRoute,private formBuilder:FormBuilder,private ciudadanoService:CiudadanoService){
       this.ciudadano=new Ciudadano();
       this.provincias=new Provincias();
@@ -26,42 +28,20 @@ import { Curriculum } from 'src/app/models/curriculum';
      }
   
      ngOnInit(): void {
+      this.tituloForm='Registro';
       this.route.params.subscribe(
           params=>{
             this.opcion=params['id'];
+            
           }
       );
-     // this.cargarProvincias();
+      if(this.opcion != '0' ){
+         this.buscarCiudadano(this.opcion); 
+         this.tituloForm='Mis datos'        
+      }
      }
 
-    /* cargarProvincias(){
-         this.provincias.push(
-          new Provincia("Buenos Aires"),
-          new Provincia("Ciudad Autónoma de Buenos Aires"),
-          new Provincia("Catamarca"),
-          new Provincia("Chaco"),
-          new Provincia("Chubut"),
-          new Provincia("Córdoba"),
-          new Provincia("Corrientes"),
-          new Provincia("Entre Rios"),
-          new Provincia("Formosa"),
-          new Provincia("Jujuy"),
-          new Provincia("La Pampa"),
-          new Provincia("La Rioja"),
-          new Provincia("Mendoza"),
-          new Provincia("Misiones"),
-          new Provincia("Néuquen"),
-          new Provincia("Río Negro"),
-          new Provincia("Salta"),
-          new Provincia("San Juan"),
-          new Provincia("San Luis"),
-          new Provincia("Santa Cruz"),
-          new Provincia("Santa Fe"),
-          new Provincia("Santiago del Estero"),
-          new Provincia("Tierra del Fuego"),
-          new Provincia("Tucumán"),
-          );
-     }*/
+   
 
      private buildForm(){
         this.formCiu = this.formBuilder.group({
@@ -100,37 +80,43 @@ import { Curriculum } from 'src/app/models/curriculum';
      seleccionProvincia(prov:any){
          
      }
-
-     seleccionEstadoCivil(estado:any){
-       
+    
+     /**Seleccion de estado civil */
+     seleccionEstadoCivil(estado:any){       
          this.ciudadano.estadoCivil=estado.target.value;
      }
 
     /**Valida que el usuario no exista en la base de datos */
      validarCiudadanoInexistente(event:Event){
          event.preventDefault();   
-
          const criteria={
           next:(res:any)=>{
-            if(res==null){
-              if(this.ciudadano.estadoCivil=='' || this.ciudadano.estadoCivil==undefined){
-                    this.estadoCivilAct=true;
-              }else{                
-               Object.assign(this.ciudadano,this.formCiu.value);
-               this.guardarCiudadano();
-              }
-            }else{
-              console.log('ciudadano ya existe');
-            }
+             this.guardarOModificarCiudadano(res);
           },
           error:(err:Error)=>{console.log("error al buscar por email: "+err.message)}
          }
-         this.ciudadanoService.getCiudadanoPorEmail(this.formCiu.value.email)
+        this.ciudadanoService.getCiudadanoPorEmail(this.formCiu.value.email)
          .subscribe(criteria);
      }
+     
+     /**depende del ciudadano, registra o modificar los datos*/
+     guardarOModificarCiudadano(res:any){
+      if(res==null || this.modificar==true){
+        if(this.ciudadano.estadoCivil=='' || this.ciudadano.estadoCivil==undefined){
+              this.estadoCivilAct=true;
+        }else{                
+         Object.assign(this.ciudadano,this.formCiu.value);
+          if(this.modificar==false)
+            this.guardarCiudadano();
+          else
+             this.modificarCiudadano(this.ciudadano);
+        }
+      }else{
+        console.log('ciudadano ya existe');
+      }
+     }
 
-     guardarCiudadano(){
-      
+     guardarCiudadano(){      
       let criteria={
         next:(res:any)=>{
             alert("ciudadano guardado")
@@ -140,6 +126,54 @@ import { Curriculum } from 'src/app/models/curriculum';
       }
       this.ciudadanoService.postGuardarCiudadano(this.ciudadano)
         .subscribe(criteria)
+     }
+
+     buscarCiudadano(id:string){      
+      let criteria= {
+        next:(res:any)=>{
+             Object.assign(this.ciudadano,res);
+             if(this.ciudadano.estadoCivil='Soltero')
+                  document.getElementById('inlineRadio1')?.click();
+             else
+                   document.getElementById('inlineRadio2')?.click();
+            this.formCiu.enable();
+            this.modificar=true;
+            this.actualizarFormulario(this.ciudadano);         
+        },
+        error: (err:Error)=>console.log("Error al buscar ciudadano: "+err.message)
+      }
+
+      this.ciudadanoService.getCiudadano(id)
+       .subscribe(criteria);
+     }
+
+     modificarCiudadano(ciudadano:Ciudadano){
+        let criteria= {
+          next:(res:any)=>{
+            console.log("ciudadano modificado");
+            console.log(res)
+          },
+          error:(err:Error)=>console.log("Error al modificar ciudadano: "+err.message)
+        }
+         this.ciudadanoService.putModificarCiudadano(ciudadano)
+         .subscribe(criteria);
+     }
+
+     actualizarFormulario(ciudadano:Ciudadano){
+      this.formCiu.get('nombre')?.setValue(ciudadano.nombre);
+       this.formCiu.get('nombre')?.markAsTouched() 
+       this.formCiu.get('dni')?.setValue(ciudadano.dni);
+       this.formCiu.get('dni')?.markAsTouched();
+       this.formCiu.get('email')?.setValue(ciudadano.email);
+       this.formCiu.get('email')?.markAsTouched();
+       this.formCiu.get('contrasenia')?.setValue(ciudadano.contrasenia);
+       this.formCiu.get('contrasenia')?.markAsTouched();
+       this.formCiu.get('provincia')?.setValue(ciudadano.provincia);
+       this.formCiu.get('provincia')?.markAsTouched();
+       this.formCiu.get('telefono')?.setValue(ciudadano.telefono);
+       this.formCiu.get('telefono')?.markAsTouched();
+       this.formCiu.get('fechaNacimiento')?.setValue(ciudadano.fechaNacimiento);
+       this.formCiu.get('fechaNacimiento')?.markAsTouched();
      }
   }
   

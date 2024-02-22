@@ -51,6 +51,11 @@
     
 }
 
+.ciudadanos:hover::-webkit-scrollbar-thumb {
+    background-color: rgb(26, 93, 175);  /* Color del thumb (barra de arrastre) */
+    border-radius: 10px;
+    
+}
 /*
   Tajeta
 */

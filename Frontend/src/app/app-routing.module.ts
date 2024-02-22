@@ -18,7 +18,7 @@ const routes: Routes = [
   //empleador
   {path:'empleador/principal',component:EmpleadorComponent},
   {path:'empleador-form/:id',component:EmpleadorFormComponent},
-  {path:'empleador/generar/oferta', component: FormOfertasLaboralesComponent},
+  {path:'empleador/generar/oferta/:id', component: FormOfertasLaboralesComponent},
   {path:'empleador/oferta/postulantes', component:TablaPostulantesComponent},
   //ciudadanos
   {path:'ciudadano/principal',component:CiudadanoComponent},

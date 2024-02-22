@@ -24,7 +24,7 @@ empleadorCtrl.createEmpleador=async (req,res)=>{
 
 empleadorCtrl.getEmpleador= async(req,res)=>{
       try {
-        const empleador = await Empleador.findById(req.params.id);
+        const empleador = await Empleador.findOne({_id:req.params.id}).populate('ofertasLaborales');
         res.json(empleador);        
       } catch (error) {
         res.status(400).json({
@@ -32,6 +32,18 @@ empleadorCtrl.getEmpleador= async(req,res)=>{
           'msg':'Erro inesperado: '+error
         })
       }
+ }
+
+ empleadorCtrl.getEmpleadorPorEmail=async(req,res)=>{
+    try {
+         let empleador=await Empleador.findOne({email:req.query.email});
+         res.json(empleador);
+    } catch (error) {
+         res.status(400).json({
+          'status':0,
+          'msg':'Error al buscar empleador por email'+error,
+         })
+    }
  }
 
  empleadorCtrl.modificarEmpleador=async(req,res)=>{
