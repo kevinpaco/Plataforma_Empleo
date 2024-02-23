@@ -1,8 +1,8 @@
 <div class="row generar-curriculum">
     <div class="container col-7">
-    <form class="row g-3 form-curriculum">
+    <form [formGroup]="formCurri" novalidate (ngSubmit)="guardarCurriculum($event)" class="row g-3 form-curriculum">
         <h2 class="title">Mi Curriculum</h2>
-        <button class="btn btn-success">Guardar</button> 
+        <button class="btn btn-success" [disabled]="formCurri.invalid">Guardar</button> 
         <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -13,32 +13,79 @@
               <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                   <div class="row"> 
                     <div class="col-md-4">
-                        <label for="nombre" class="form-label">Nombre: </label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
-                    </div>
+                        <label for="nombre" class="form-label">Nombre: (<span class="text-danger fw-bold">*</span>)</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" 
+                        formControlName="nombre" [ngClass]="{'is-invalid':formCurri.get('nombre')?.invalid && formCurri.get('nombre')?.touched
+                        ,'is-valid':formCurri.get('nombre')?.valid && formCurri.get('nombre')?.touched}" [value]="curriculum.nombre">
+                        <p *ngIf="formCurri.get('nombre')?.invalid && formCurri.get('nombre')?.touched" class="invalid-feedback">
+                          <small>Ingrese Nombre</small>
+                        </p> 
+                        <p *ngIf="formCurri.get('nombre')?.valid && formCurri.get('nombre')?.touched" class="invalid-feedback">
+                          <small>Correcto</small>
+                        </p> 
+                      </div>
                     <div class="col-md-4">
-                        <label for="apellido" class="form-label">Apellido: </label>
-                        <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" >
-                        </div>
+                        <label for="apellido" class="form-label">Apellido: (<span class="text-danger fw-bold">*</span>) </label>
+                        <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido"
+                        formControlName="apellido" [ngClass]="{'is-invalid':formCurri.get('apellido')?.invalid && formCurri.get('apellido')?.touched
+                        ,'is-valid':formCurri.get('apellido')?.valid && formCurri.get('apellido')?.touched}" [value]="curriculum.apellido" >
+                         <p *ngIf="formCurri.get('apellido')?.invalid && formCurri.get('apellido')?.touched" class="invalid-feedback">
+                          <small>Ingrese apellido</small>
+                        </p> 
+                        <p *ngIf="formCurri.get('apellido')?.valid && formCurri.get('apellido')?.touched" class="valid-feedback">
+                          <small>Correcto</small>
+                        </p>  
+                      </div>
                         <div class="col-md-4">
-                        <label for="fechaNacimiento" class="form-label">Fecha de nacimiento: </label>
-                        <input type="date" class="form-control" id="fechaNacimiento" placeholder="Ingrese Fecha de fechaNacimiento" >
-                        </div>
+                        <label for="fechaNacimiento" class="form-label">Fecha de nacimiento: (<span class="text-danger fw-bold">*</span>)</label>
+                        <input type="date" class="form-control" id="fechaNacimiento" placeholder="Ingrese Fecha de fechaNacimiento" 
+                        formControlName="fechaNacimiento" [ngClass]="{'is-invalid':formCurri.get('fechaNacimiento')?.invalid && formCurri.get('fechaNacimiento')?.touched
+                        ,'is-valid':formCurri.get('fechaNacimiento')?.valid && formCurri.get('fechaNacimiento')?.touched}" [value]="curriculum.fechaNacimiento">
+                        <p *ngIf="formCurri.get('fechaNacimiento')?.invalid && formCurri.get('fechaNacimiento')?.touched" class="invalid-feedback">
+                          <small>Ingrese fecha de nacimiento</small>
+                        </p> 
+                        <p *ngIf="formCurri.get('fechaNacimiento')?.valid && formCurri.get('fechaNacimiento')?.touched" class="valid-feedback">
+                          <small>Correcto</small>
+                        </p>   
+                      </div>
                         <div class="col-md-4">
-                        <label for="telefono" class="form-label">Telefono: </label>
-                        <input type="text" class="form-control" id="telefono" placeholder="Ingrese telefono" >
-                        </div>
+                        <label for="telefono" class="form-label">Telefono: (<span class="text-danger fw-bold">*</span>)</label>
+                        <input type="text" class="form-control" id="telefono" placeholder="Ingrese telefono" 
+                        formControlName="telefono" [ngClass]="{'is-invalid':formCurri.get('telefono')?.invalid && formCurri.get('telefono')?.touched
+                        ,'is-valid':formCurri.get('telefono')?.valid && formCurri.get('telefono')?.touched}" [value]="curriculum.telefono">
+                         <p *ngIf="formCurri.get('telefono')?.invalid && formCurri.get('telefono')?.touched" class="invalid-feedback">
+                          <small>Ingrese telefono</small>
+                        </p> 
+                        <p *ngIf="formCurri.get('telefono')?.valid && formCurri.get('telefono')?.touched" class="valid-feedback">
+                          <small>Correcto</small>
+                        </p>   
+                      </div>
                     <div class="col-md-4">
-                        <label for="validationCustom04" class="form-label">Provincia: </label>
-                        <select class="form-select" id="validationCustom04" >
+                        <label for="validationCustom04" class="form-label">Provincia: (<span class="text-danger fw-bold">*</span>)</label>
+                        <select class="form-select" id="validationCustom04" formControlName="provincia" [ngClass]="{'is-invalid':formCurri.get('provincia')?.invalid && formCurri.get('provincia')?.touched
+                        ,'is-valid':formCurri.get('provincia')?.valid && formCurri.get('provincia')?.touched}" [value]="curriculum.provincia">
                             <option selected disabled value="">opciones</option>
-                            <option>...</option>
+                            <option *ngFor="let provincia of provincias.provincias,let i=index" [value]="provincia.nombre">{{provincia.nombre}}</option>
                         </select>
-                        </div>
+                        <p *ngIf="formCurri.get('provincia')?.invalid && formCurri.get('provincia')?.touched" class="invalid-feedback">
+                          <small>Ingrese provincia</small>
+                        </p> 
+                        <p *ngIf="formCurri.get('provincia')?.valid && formCurri.get('provincia')?.touched" class="valid-feedback">
+                          <small>Correcto</small>
+                        </p>  
+                      </div>
                     <div class="col-md-4">
-                        <label for="direccion" class="form-label">Direccion: </label>
-                        <input type="number" class="form-control" id="direccion" placeholder="Ingrese su direccion" >
-                    </div>
+                        <label for="direccion" class="form-label">Direccion: (<span class="text-danger fw-bold">*</span>)</label>
+                        <input type="text" class="form-control" id="direccion" placeholder="Ingrese su direccion" 
+                        formControlName="direccion" [ngClass]="{'is-invalid':formCurri.get('direccion')?.invalid && formCurri.get('direccion')?.touched
+                        ,'is-valid':formCurri.get('direccion')?.valid && formCurri.get('direccion')?.touched}" [value]="curriculum.direccion">
+                        <p *ngIf="formCurri.get('direccion')?.invalid && formCurri.get('direccion')?.touched" class="invalid-feedback">
+                          <small>Ingrese direccion</small>
+                        </p> 
+                        <p *ngIf="formCurri.get('direccion')?.valid && formCurri.get('direccion')?.touched" class="valid-feedback">
+                          <small>Correcto</small>
+                        </p>  
+                </div>
                 </div>
               </div>
             </div>
@@ -52,7 +99,7 @@
                   <div class="accordion-body">
                       <div class="row">
                         <div class="col-md-12">
-                            <label for="perfilLaboral" class="form-label">Mi Perfil: </label>
+                            <label for="perfilLaboral" class="form-label">Mi Perfil: (<span class="text-danger fw-bold">*</span>)</label>
                             <textarea type="text" class="form-control" id="perfilLaboral" placeholder="Ingrese su Perfil Laboral" ></textarea>
                         </div>
                         <div class="col-md-12">

@@ -53,14 +53,12 @@ export class CiudadanoService {
   }
 
   postGuardarCiudadano(ciudadano:Ciudadano):Observable<any>{
-    console.log(ciudadano)
       const httpOption={
         headers:new HttpHeaders({
           'Content-type':'application/json'
         })
       }
       let body= JSON.stringify(ciudadano);
-      //console.log(body)
       return this._http.post(this.url, body,httpOption);
   }
 

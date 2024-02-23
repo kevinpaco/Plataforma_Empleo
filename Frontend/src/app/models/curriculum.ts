@@ -1,9 +1,11 @@
 import { Ciudadano} from "./ciudadano.model";
 import { Login } from "./login";
 
-export class Curriculum extends Login{
+export class Curriculum {
      //datos personales
+     _id!:string;
      imagen!:string;
+     email!:string;
      nombre!:string;
      apellido!:string;
      telefono!:string;
@@ -35,12 +37,13 @@ export class Curriculum extends Login{
      perfilLaboral!:string;
      sobreMi!:string;
      conociemientosInformaticos!:string;
-     ciudadano!:Ciudadano;
+     ciudadano!:string;
 
      constructor(){
-        super();
         //datos personales
+     this._id='';
      this.imagen='';
+     this.email='';
      this.nombre='';
      this.apellido='';
      this.telefono='';
@@ -72,6 +75,7 @@ export class Curriculum extends Login{
      this.perfilLaboral='';
      this.sobreMi='';
      this.conociemientosInformaticos='';
+     this.ciudadano='';   
      
      }
 }
